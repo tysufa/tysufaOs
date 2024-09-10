@@ -13,25 +13,29 @@ in
       {
         layer = "top";
         position = "top";
-        modules-center = [ "hyprland/workspaces" ];
         modules-left = [
-          "custom/startmenu"
-          "hyprland/window"
-          "pulseaudio"
+          "hyprland/workspaces"
           "cpu"
           "memory"
-          "idle_inhibitor"
+          "disk"
+          # "idle_inhibitor"
         ];
+        modules-center = [ "hyprland/window" ];
         modules-right = [
-          "custom/hyprbindings"
-          "custom/notification"
-          "custom/exit"
-          "battery"
           "tray"
           "clock"
+          "network"
+          "backlight"
+          "pulseaudio"
+          # "custom/hyprbindings"
+          # "custom/notification"
+          # "custom/exit"
+          "battery"
         ];
 
         "hyprland/workspaces" = {
+          disable-scroll = true;
+          all-outputs = true;
           format = "{name}";
           format-icons = {
             default = " ";
@@ -42,15 +46,16 @@ in
           on-scroll-down = "hyprctl dispatch workspace e-1";
         };
         "clock" = {
-          format = if clock24h == true then '' {:L%H:%M}'' else '' {:L%I:%M %p}'';
-          tooltip = true;
+          format = '' {:L%H:%M  %d/%m}'';
+          # format = ''{: L%H:%M   %d/%m}'';
+          tooltip = false;
           tooltip-format = "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>";
         };
         "hyprland/window" = {
           max-length = 22;
           separate-outputs = false;
           rewrite = {
-            "" = " 🙈 No Windows? ";
+            "" = "No Windows";
           };
         };
         "memory" = {
@@ -176,94 +181,141 @@ in
     style = 
       ''
         * {
-          font-family: JetBrainsMono Nerd Font Mono;
-          font-size: 16px;
-          border-radius: 0px;
-          border: none;
-          min-height: 0px;
-        }
-        window#waybar {
-          background: rgba(0,0,0,0);
-        }
-        #workspaces {
-          color: #${config.lib.stylix.colors.base00};
-          background: #${config.lib.stylix.colors.base01};
-          margin: 4px 4px;
-          padding: 5px 5px;
-          border-radius: 16px;
-        }
-        #workspaces button {
-          font-weight: bold;
-          padding: 0px 5px;
-          margin: 0px 3px;
-          border-radius: 16px;
-          color: #${config.lib.stylix.colors.base00};
-          background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
-          opacity: 0.5;
-          transition: ${betterTransition};
-        }
-        #workspaces button.active {
-          font-weight: bold;
-          padding: 0px 5px;
-          margin: 0px 3px;
-          border-radius: 16px;
-          color: #${config.lib.stylix.colors.base00};
-          background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
-          transition: ${betterTransition};
-          opacity: 1.0;
-          min-width: 40px;
-        }
-        #workspaces button:hover {
-          font-weight: bold;
-          border-radius: 16px;
-          color: #${config.lib.stylix.colors.base00};
-          background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
-          opacity: 0.8;
-          transition: ${betterTransition};
-        }
-        tooltip {
-          background: #${config.lib.stylix.colors.base00};
-          border: 1px solid #${config.lib.stylix.colors.base08};
-          border-radius: 12px;
-        }
-        tooltip label {
-          color: #${config.lib.stylix.colors.base08};
-        }
-        #window, #pulseaudio, #cpu, #memory, #idle_inhibitor {
-          font-weight: bold;
-          margin: 4px 0px;
-          margin-left: 7px;
-          padding: 0px 18px;
-          background: #${config.lib.stylix.colors.base04};
-          color: #${config.lib.stylix.colors.base00};
-          border-radius: 24px 10px 24px 10px;
-        }
-        #custom-startmenu {
-          color: #${config.lib.stylix.colors.base0B};
-          background: #${config.lib.stylix.colors.base02};
-          font-size: 28px;
-          margin: 0px;
-          padding: 0px 30px 0px 15px;
-          border-radius: 0px 0px 40px 0px;
-        }
-        #custom-hyprbindings, #network, #battery,
-        #custom-notification, #tray, #custom-exit {
-          font-weight: bold;
-          background: #${config.lib.stylix.colors.base0F};
-          color: #${config.lib.stylix.colors.base00};
-          margin: 4px 0px;
-          margin-right: 7px;
-          border-radius: 10px 24px 10px 24px;
-          padding: 0px 18px;
-        }
-        #clock {
-          font-weight: bold;
-          color: #0D0E15;
-          background: linear-gradient(90deg, #${config.lib.stylix.colors.base0E}, #${config.lib.stylix.colors.base0C});
-          margin: 0px;
-          padding: 0px 15px 0px 30px;
-          border-radius: 0px 0px 0px 40px;
-        }
+    border: none;
+    border-radius: 0;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(21, 18, 27, 0);
+    color: #cdd6f4;
+}
+
+tooltip {
+    background: #1e1e2e;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #11111b;
+}
+
+#workspaces button {
+    padding: 5px;
+    color: #313244;
+    margin-right: 5px;
+}
+
+#workspaces button.active {
+    color: #a6adc8;
+}
+
+#workspaces button.focused {
+    color: #a6adc8;
+    background: #eba0ac;
+    border-radius: 10px;
+}
+
+#workspaces button.urgent {
+    color: #11111b;
+    background: #a6e3a1;
+    border-radius: 10px;
+}
+
+#workspaces button:hover {
+    background: #11111b;
+    color: #cdd6f4;
+    border-radius: 10px;
+}
+
+#custom-language,
+#custom-updates,
+#custom-caffeine,
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#workspaces,
+#tray,
+#backlight {
+    background: #1e1e2e;
+    padding: 0px 10px;
+    margin: 3px 0px;
+    margin-top: 10px;
+    border: 1px solid #181825;
+}
+
+#tray {
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+#workspaces {
+    background: #1e1e2e;
+    border-radius: 10px;
+    margin-left: 10px;
+    padding-right: 0px;
+    padding-left: 5px;
+}
+
+#custom-caffeine {
+    color: #89dceb;
+    border-radius: 10px 0px 0px 10px;
+    border-right: 0px;
+    margin-left: 10px;
+}
+
+#custom-language {
+    color: #f38ba8;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#custom-updates {
+    color: #f5c2e7;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#window {
+    border-radius: 10px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+#clock {
+    color: #f9e2af;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+#network {
+    color: #fab387;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#pulseaudio {
+    color: #89b4fa;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#battery {
+    color: #a6e3a1;
+    border-radius: 0 10px 10px 0;
+    margin-right: 10px;
+    border-left: 0px;
+}
+
+#backlight {
+    color: #cba6f7;
+    border-left: 0px;
+    border-right: 0px;
+}
       '';
   };
 }

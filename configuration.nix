@@ -1,14 +1,29 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+
+  # Enable "Silent Boot"
+  boot = {
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+    ];
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader.timeout = 0;
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -59,11 +74,8 @@
     displayManager.sddm.enable = true;
     # services.xserver.displayManager.sddm.theme = "${import ./sddm-theme.nix { inherit pkgs; }}";
     displayManager.sddm.theme = "catppuccin-mocha";
-    displayManager.sddm.package = pkgs.kdePackages.sddm;
+    displayManager.sddm.package = pkgs.kdePackages.sddm; # to use catppuccin theme
   };
-
-
-  
 
   # Configure console keymap
   console.keyMap = "fr";
@@ -81,14 +93,8 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["JetBrainsMono"];})
   ];
@@ -102,7 +108,7 @@
     packages = with pkgs; [
     #  thunderbird
     ];
-    shell = pkgs.zsh;
+    shell = pkgs.zsh; 
   };
 
   # enable hyprland
@@ -110,19 +116,31 @@
     hyprland.enable = true;
     firefox.enable = true;
     zsh.enable = true; # is also set to true in home manager but is needed to be the shell of the user
-    gnupg.agent = {
-      enable = true;
-      pinentryPackage = pkgs.pinentry-curses;
+    gnupg.agent = { 
+      enable = true; # enable gpg
+      pinentryPackage = pkgs.pinentry-curses; # a pinentry is th window poping when asking for a password
       enableSSHSupport = true;
     };
+
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    };
   };
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-run"
+  ];
 
 
   # global theme of my nixos
   stylix.enable = true;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes" ];
@@ -135,7 +153,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    gcc
+    python3
+    go
+
+    bat
+
     wl-clipboard # clipboard for wayland
+    hyprpicker # selectionneur de couleur
 
     walker # highly extensible application launcher
     dmenu-wayland # pass has a dmenu command included
@@ -176,10 +201,6 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # List services that you want to enable:
 

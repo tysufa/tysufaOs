@@ -47,13 +47,13 @@
             sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
             accel_profile = flat
           }
-          windowrule = noborder,^(wofi)$
-          windowrule = center,^(wofi)$
           windowrule = center,^(steam)$
           windowrule = float, nm-connection-editor|blueman-manager
           windowrule = float, swayimg|vlc|Viewnior|pavucontrol
           windowrule = float, nwg-look|qt5ct|mpv
-          windowrule = float, zoom
+          windowrule = float, title:(rofi*)
+          windowrule = noborder, title:(rofi*)
+          windowrule = center, title:(rofi*)
           windowrulev2 = stayfocused, title:^()$,class:^(steam)$
           windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
           windowrulev2 = opacity 0.9 0.7, class:^(Brave)$
@@ -105,7 +105,6 @@
           }
           bind = ${modifier},Return,exec,kitty
           bind = ${modifier},D,exec,kitty
-          # bind = ${modifier}SHIFT,Return,exec,rofi-launcher
           bind = ${modifier}SHIFT,Return,exec,rofi -show drun
           bind = ${modifier}ALT ,F,exec,web-search
           bind = ${modifier}ALT,W,exec,wallsetter
@@ -113,7 +112,6 @@
           bind = ${modifier},F,exec,firefox
           bind = ${modifier}SHIFT,E,exec,emopicker9000
           bind = ${modifier}SHIFT,S,exec,screenshootin
-          bind = ${modifier}SHIFT,D,exec,discord
           bind = ${modifier},C,exec,hyprpicker -a
           bind = ${modifier},E,exec,nautilus
           bind = ${modifier},S,exec,spotify
@@ -133,6 +131,7 @@
           bind = ${modifier}SHIFT,l,movewindow,r
           bind = ${modifier}SHIFT,k,movewindow,u
           bind = ${modifier}SHIFT,j,movewindow,d
+          bind = ${modifier}SHIFT,r,exec, nh home switch ~/tysufaOs
           bind = ${modifier},left,movefocus,l
           bind = ${modifier},right,movefocus,r
           bind = ${modifier},up,movefocus,u
