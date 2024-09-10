@@ -19,7 +19,7 @@
 
   imports = [
     ./config/hypr/hyprland.nix
-    ./config/waybar.nix
+    ./config/waybar/waybar.nix
     ./config/neovim.nix
     ./config/ohmyposh.nix
     ./config/rofi.nix

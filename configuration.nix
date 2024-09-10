@@ -153,6 +153,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    playerctl
+    
+    btop
+
+    spotify
+
+    swww #wallpaper manager
+
     gcc
     python3
     go
