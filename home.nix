@@ -25,6 +25,7 @@
     ./config/rofi.nix
     ./config/zsh.nix
     ./config/hyprlock.nix
+    ./config/wlogout/wlogout.nix
   ];
 
   programs.kitty = {
