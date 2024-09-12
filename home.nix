@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.username = "tysufa";
@@ -14,7 +14,7 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   stylix.enable = true;
-  stylix.image = ./backgrounds/wallpaper-theme-converter.png;
+  stylix.image = ./backgrounds/kurz.png;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
   imports = [
@@ -25,6 +25,7 @@
     ./config/rofi.nix
     ./config/zsh.nix
     ./config/hyprlock.nix
+    ./config/wlogout/wlogout.nix
   ];
 
   programs.kitty = {
