@@ -30,8 +30,8 @@
           monitor=,preferred,auto,1
           general {
             sensitivity = 2.0
-            gaps_in = 6
-            gaps_out = 8
+            gaps_in = 2
+            gaps_out = 3
             border_size = 2
             layout = dwindle
             resize_on_border = true
