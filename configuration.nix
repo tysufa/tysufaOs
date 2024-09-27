@@ -104,12 +104,14 @@
   users.users.tysufa = {
     isNormalUser = true;
     description = "tysufa";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     #  thunderbird
     ];
     shell = pkgs.zsh; 
   };
+
+  virtualisation.docker.enable = true; # install docker
 
   # enable hyprland
   programs = {
@@ -130,12 +132,8 @@
     };
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-run"
-  ];
-
+  hardware.graphics.enable32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
 
   # global theme of my nixos
   stylix.enable = true;
@@ -160,9 +158,12 @@
     btop
 
     spotify
+    discord
 
     swww #wallpaper manager
 
+    R
+    ocaml
     gcc
     python3
     go
