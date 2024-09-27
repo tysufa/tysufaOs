@@ -14,7 +14,7 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   stylix.enable = true;
-  stylix.image = ./backgrounds/kurz.png;
+  stylix.image = ./backgrounds/wtf.jpg;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
   imports = [

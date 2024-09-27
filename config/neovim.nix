@@ -8,20 +8,22 @@
       # vimAlias = true; vimdiffAlias = true;
       withNodeJs = true;
       extraPackages = with pkgs; [
+        ocamlPackages.ocaml-lsp
+        clang-tools
         lua-language-server
         gopls
         wl-clipboard
         luajitPackages.lua-lsp
         nil
         rust-analyzer
-        # nodePackages.bash-language-server
+        nodePackages.bash-language-server
         yaml-language-server
         pyright
         marksman
       ];
       plugins = with pkgs.vimPlugins; [
         mini-nvim # dependencie for render-markdown
-        render-markdown
+        # render-markdown
         fidget-nvim
         cmp-path
         nvim-notify
@@ -76,7 +78,7 @@
         require("bufferline").setup{}
         require("startup").setup({theme = "evil"})
         require("fidget").setup{}
-        require("render-markdown").setup{}
+        -- require("render-markdown").setup{}
       '';
     };
   };
