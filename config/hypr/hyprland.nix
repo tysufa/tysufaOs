@@ -6,29 +6,17 @@
     extraConfig =
       let 
         modifier = "SUPER";
+        # BG = ~/tysufaOs/backgrounds/ -name "*.jpg" -o -name "*.png" | shuf -n1
       in
         ''
-          env = NIXOS_OZONE_WL, 1
-          env = NIXPKGS_ALLOW_UNFREE, 1
-          env = XDG_CURRENT_DESKTOP, Hyprland
-          env = XDG_SESSION_TYPE, wayland
-          env = XDG_SESSION_DESKTOP, Hyprland
-          env = GDK_BACKEND, wayland, x11
-          env = CLUTTER_BACKEND, wayland
-          env = QT_QPA_PLATFORM=wayland;xcb
-          env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
-          env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
-          env = SDL_VIDEODRIVER, x11
-          env = MOZ_ENABLE_WAYLAND, 1
-          exec-once = dbus-update-activation-environment --systemd --all
-          exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-          exec-once = pkill swww & sleep .5 && swww-daemon --format xrgb
-          exec-once = killall -q swaync;sleep .5 && swaync
-          exec-once = nm-applet --indicator
-          exec-once = lxqt-policykit-agent
+          
+          exec-once = sleep 5; swww-daemon; sleep 1; swww img ~/tysufaOs/backgrounds/kurz.png 
+          exec-once = pkill waybar; waybar
+          exec-once = change_wallpaper.sh
+          # exec-once = killall -q swaync;sleep .5 && swaync
+          # exec-once = dbus-update-activation-environment --systemd --all
           monitor=,preferred,auto,1
           general {
-            sensitivity = 2.0
             gaps_in = 2
             gaps_out = 3
             border_size = 2
@@ -43,7 +31,7 @@
             touchpad {
               natural_scroll = false
             }
-            sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+            sensitivity = 1.0 # -1.0 - 1.0, 0 means no modification.
             accel_profile = flat
           }
           windowrule = center,^(steam)$
