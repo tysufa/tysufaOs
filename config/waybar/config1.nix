@@ -9,7 +9,7 @@
         # "cpu"
         # "memory"
       ];
-      modules-center = [ "custom/music" ];
+      modules-center = [ "custom/music" "custom/wallpaper"];
       modules-right = [
         "tray"
         "network"
@@ -20,6 +20,12 @@
         # "custom/notification"
         # "custom/exit"
       ];
+      "custom/wallpaper" = {
+        "tooltip" = false;
+        "format" = "󰸉 ";
+        "on-click" = "sh ~/tysufaOs/config/scripts/change_wallpaper.sh";
+      };
+
       "custom/music" = {
         "format"= "{}";
         "format-icons" = {
@@ -42,6 +48,18 @@
           default = "";
           active = "";
           urgent = "";
+        };
+        persistent_workspaces = {
+            "1"= [];
+            "2"= [];
+            "3"= [];
+            "4"= [];
+            "5"= [];
+            "6"= [];
+            "7"= [];
+            "8"= [];
+            "9"= [];
+            "10"= [];
         };
         on-scroll-up = "hyprctl dispatch workspace e+1";
         on-scroll-down = "hyprctl dispatch workspace e-1";
@@ -102,7 +120,7 @@
         format-bluetooth = "{volume}% {icon} {format_source}";
         format-bluetooth-muted = " {icon} {format_source}";
         format-muted = " 󰝟 {format_source}";
-        format-source = " {volume}%";
+        # format-source = " {volume}%";
         format-source-muted = "";
         format-icons = {
           headphone = "";
@@ -275,6 +293,7 @@ tooltip {
 #custom-updates,
 #custom-caffeine,
 #custom-music,
+#custom-wallpaper,
 #window,
 #clock,
 #battery,
@@ -290,9 +309,15 @@ tooltip {
     border: 1px solid #181825;
 }
 
+#custom-wallpaper {
+  color: @red;
+}
+
+#custom-wallpaper,
 #tray {
     border-radius: 10px;
     margin-right: 10px;
+    margin-left: 10px;
 }
 
 #workspaces {
