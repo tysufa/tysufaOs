@@ -92,6 +92,7 @@
           }
           bind = ${modifier},Return,exec,kitty
           bind = ${modifier},D,exec,kitty
+          bind = ${modifier}SHIFT,D,exec,cool-retro-term
           bind = ${modifier}SHIFT,Return,exec,rofi -show drun
           bind = ${modifier}ALT ,F,exec,web-search
           bind = ${modifier}ALT,W,exec,wallsetter
@@ -100,6 +101,7 @@
           bind = ${modifier}SHIFT,E,exec,emopicker9000
           bind = ${modifier}SHIFT,S,exec,screenshootin
           bind = ${modifier},C,exec,hyprpicker -a
+          bind = ${modifier}SHIFT,P,exec,grim -g $(slurp)
           bind = ${modifier},E,exec,nautilus
           bind = ${modifier},S,exec,spotify
           bind = ${modifier},Q,killactive,

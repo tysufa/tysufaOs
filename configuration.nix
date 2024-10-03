@@ -151,6 +151,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    libreoffice-qt
+    hunspell # for spellcheck
+    hunspellDicts.fr-any
+
     killall
 
     playerctl
@@ -172,6 +176,11 @@
 
     wl-clipboard # clipboard for wayland
     hyprpicker # selectionneur de couleur
+    hyprshot # screenshot
+    #dependencies of hyprshot
+    grim
+    slurp
+    libnotify
 
     walker # highly extensible application launcher
     dmenu-wayland # pass has a dmenu command included
@@ -192,6 +201,7 @@
     fzf
     yazi # terminal file manager with lots of customization
 
+    cool-retro-term
     # pour eliot
     uwuify
     uwufetch
