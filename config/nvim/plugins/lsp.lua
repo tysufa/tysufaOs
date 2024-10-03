@@ -42,3 +42,4 @@ require'lspconfig'.yamlls.setup{}
 require'lspconfig'.bashls.setup{}
 require'lspconfig'.clangd.setup{}
 require'lspconfig'.ocamllsp.setup{}
+require'lspconfig'.tsserver.setup{}

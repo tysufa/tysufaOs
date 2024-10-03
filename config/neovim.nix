@@ -8,6 +8,7 @@
       # vimAlias = true; vimdiffAlias = true;
       withNodeJs = true;
       extraPackages = with pkgs; [
+        typescript-language-server # for js
         ocamlPackages.ocaml-lsp
         clang-tools
         lua-language-server
