@@ -151,20 +151,17 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    gitmux
+
     libreoffice-qt
     hunspell # for spellcheck
     hunspellDicts.fr-any
 
-    killall
-
-    playerctl
+    playerctl # used for waybar to play show music
     
-    btop
-
     spotify
     discord
 
-    swww #wallpaper manager
 
     R
     ocaml
@@ -172,7 +169,16 @@
     python3
     go
 
+    eza # ls but with better presentation
+    tree
     bat
+    acpi # get battery level
+    figlet
+    btop
+    killall
+    fzf
+    yazi # terminal file manager with lots of customization
+    cool-retro-term
 
     wl-clipboard # clipboard for wayland
     hyprpicker # selectionneur de couleur
@@ -181,6 +187,7 @@
     grim
     slurp
     libnotify
+    swww #wallpaper manager
 
     walker # highly extensible application launcher
     dmenu-wayland # pass has a dmenu command included
@@ -189,8 +196,6 @@
     pinentry-curses # interface to enter passwords when prompted, necessary for password store
     pass # password store : password manager
 
-    eza # ls but with better presentation
-    tree
     
     # sddm themes
     catppuccin-sddm-corners
@@ -198,10 +203,7 @@
       flavor = "mocha";
     })
 
-    fzf
-    yazi # terminal file manager with lots of customization
 
-    cool-retro-term
     # pour eliot
     uwuify
     uwufetch
