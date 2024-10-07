@@ -11,23 +11,11 @@ keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnosti
 keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
 keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+keymap.set({'t', 'n'}, '<C-t>', '<CMD>FloatermToggle<CR>', { desc = 'toggle floaterm' })
 
 -- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
+
 --  See `:help wincmd` for a list of all window commands
 keymap.set('n', '<A-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 keymap.set('n', '<A-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
@@ -38,7 +26,7 @@ keymap.set('i', 'jk', '<ESC>', { desc = 'exit insert mode' })
 
 local opts = {}
 keymap.set('n', '//', ':%s//<Left>', { desc = 'search and replace' }) -- permet de chercher et remplacer tous les termes exact entre \<\>
-keymap.set('n', '<leader>n', ':set number!<CR>', { desc = 'toggle line numbers' })
+keymap.set('n', '<leader>nb', ':set number!<CR>', { desc = 'toggle line numbers' })
 keymap.set('n', '<C-s>', ':w<CR>', opts)
 keymap.set('n', '<C-q>', ':wq<CR>', opts)
 keymap.set('n', '<C-j>', '<C-e>', opts)

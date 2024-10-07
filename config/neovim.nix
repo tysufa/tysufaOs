@@ -23,6 +23,7 @@
         marksman
       ];
       plugins = with pkgs.vimPlugins; [
+        vim-floaterm # floating terminal
         mini-nvim # dependencie for render-markdown
         # render-markdown
         fidget-nvim
