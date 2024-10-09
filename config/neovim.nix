@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  stylix.targets.neovim.enable = false;
   programs = {
     neovim = {
       enable = true;
@@ -23,6 +24,9 @@
         marksman
       ];
       plugins = with pkgs.vimPlugins; [
+        catppuccin-nvim
+        alpha-nvim # pretty startup screen
+
         vim-floaterm # floating terminal
         mini-nvim # dependencie for render-markdown
         # render-markdown
@@ -77,8 +81,10 @@
         ${builtins.readFile ./nvim/plugins/lualine.lua}
         ${builtins.readFile ./nvim/plugins/noice.lua}
         ${builtins.readFile ./nvim/keymaps.lua}
+        ${builtins.readFile ./nvim/plugins/catppuccin.lua}
+        ${builtins.readFile ./nvim/plugins/alpha.lua}
         require("bufferline").setup{}
-        require("startup").setup({theme = "evil"})
+        -- require("startup").setup({theme = "evil"})
         require("fidget").setup{}
         -- require("render-markdown").setup{}
       '';
