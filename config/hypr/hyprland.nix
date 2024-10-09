@@ -10,9 +10,9 @@
       in
         ''
           
-          exec-once = sleep 5; swww-daemon; sleep 1; swww img ~/tysufaOs/backgrounds/kurz.png 
+          exec-once = sleep 1; swww-daemon
           exec-once = pkill waybar; waybar
-          exec-once = change_wallpaper.sh
+          # exec-once = change_wallpaper.sh
           # exec-once = killall -q swaync;sleep .5 && swaync
           # exec-once = dbus-update-activation-environment --systemd --all
           monitor=,preferred,auto,1
@@ -94,19 +94,24 @@
           bind = ${modifier},D,exec,kitty
           bind = ${modifier}SHIFT,D,exec,cool-retro-term
           bind = ${modifier}SHIFT,Return,exec,rofi -show drun
+
           bind = ${modifier}ALT ,F,exec,web-search
           bind = ${modifier}ALT,W,exec,wallsetter
           bind = ${modifier}SHIFT,N,exec,swaync-client -rs
-          bind = ${modifier},F,exec,firefox
           bind = ${modifier}SHIFT,E,exec,emopicker9000
           bind = ${modifier}SHIFT,S,exec,screenshootin
+          bind = ${modifier}SHIFT,I,togglesplit,
+
+          # windowrulv2 = float, title:^(lnks)$
+          bind = ${modifier},B,exec, [float;noanim] kitty -e ~/tysufaOs/config/scripts/lnks/lnks.sh 
+          bind = ${modifier}SHIFT,B,exec, [float;noanim] kitty -e ~/tysufaOs/config/scripts/lnks/lnks.sh -e 
+          bind = ${modifier},F,exec,firefox
           bind = ${modifier},C,exec,hyprpicker -a
           bind = ${modifier}SHIFT,P,exec,grim -g $(slurp)
           bind = ${modifier},E,exec,nautilus
           bind = ${modifier},S,exec,spotify
           bind = ${modifier},Q,killactive,
           bind = ${modifier},P,pseudo,
-          bind = ${modifier}SHIFT,I,togglesplit,
           bind = ${modifier}SHIFT,F,fullscreen,
           bind = ${modifier},V,togglefloating,
           bind = ${modifier}SHIFT,L,exec,hyprlock
