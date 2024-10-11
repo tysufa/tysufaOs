@@ -1,0 +1,1 @@
+make tmux look great https://hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/
