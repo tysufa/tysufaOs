@@ -10,7 +10,7 @@
       in
         ''
           
-          exec-once = sleep 1; swww-daemon
+          exec-once = sleep 1.5; swww-daemon
           exec-once = pkill waybar; waybar
           # exec-once = change_wallpaper.sh
           # exec-once = killall -q swaync;sleep .5 && swaync

@@ -1,1 +1,5 @@
 blog on how to make tmux pretty https://hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/
+projects ideas https://austinhenley.com/blog/challengingprojects.html
+writing a OS with rust http://osblog.stephenmarz.com/index.html
+projects ideas  https://github.com/The-Cool-Coders/Project-Ideas-And-Resources?tab=readme-ov-file
+guessin game, steps to make it a web game https://github.com/GT-Corp/myths-and-facts-about-programming/blob/master/full-scope-developer.md

@@ -12,6 +12,12 @@ fi
 keep_open=false
 baseDir="$(dirname "$0")"
 curDir=$(pwd)
+if [[ -e "$(pwd)"/.bookmarks.txt ]]; then
+  dir=$(pwd)
+else
+  dir="$(dirname "$0")"
+fi
+
 
 usage () {
     echo "Usage: $(basename "$0") [OPTIONS...]"
@@ -23,7 +29,7 @@ usage () {
 }
 
 edit () {
-  vim "$curDir"/.bookmarks.txt
+  vim "$dir"/.bookmarks.txt
   exit 0
 }
 
@@ -45,11 +51,6 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
-if [[ -e "$curDir"/.bookmarks.txt ]]; then
-  dir=$curDir
-else
-  dir=$baseDir
-fi
 if type explorer.exe &> /dev/null; then
   open_command="explorer.exe"
 elif type open &> /dev/null; then

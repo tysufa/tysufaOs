@@ -151,6 +151,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    yad # allow you to display gtk dialog boxes from command line
     gitmux
 
     libreoffice-qt
@@ -168,6 +169,7 @@
     gcc
     python3
     go
+    cobra-cli # Cobra CLI tool to generate applications and commands, cobra is a go module to make cli apps
 
     eza # ls but with better presentation
     tree

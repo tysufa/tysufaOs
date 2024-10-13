@@ -1,1 +1,2 @@
 make tmux look great https://hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/
+dreams of codes tmux style https://github.com/janoamaral/tokyo-night-tmux/blob/master/tokyo-night.tmux
