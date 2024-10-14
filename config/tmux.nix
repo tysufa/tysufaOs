@@ -9,7 +9,6 @@
     keyMode = "vi";
     shortcut = "Space";
     terminal = "tmux-256color";
-    # plugins = with pkgs.tmuxPlugins;[ catppuccin battery ];
 
   extraConfig = with pkgs.tmuxPlugins;''
 # split panes using | and -, make sure they open in the same path
@@ -49,23 +48,26 @@ bind u capture-pane \;\
 # -------------
 
 #  modes
-setenv -g COULEUR yellow
+setenv -g RED green
+setenv -g GREEN red
 setw -g clock-mode-colour yellow
-setw -g mode-style 'fg=black bg=red bold'
+setw -g mode-style 'fg=black bg=#{RED} bold'
 
 # panes
-set -g pane-border-style 'fg=red'
+set -g pane-border-style 'fg=#{RED}'
 set -g pane-active-border-style 'fg=yellow'
 
-run-shell ${battery}/share/tmux-plugins/battery/battery.tmux
+# run-shell ${battery}/share/tmux-plugins/battery/battery.tmux
 
 # statusbar
 set -g status-position top
 set -g status-justify left
-set -g status-style 'fg=red'
+set -g status-style 'fg=#{RED}'
 
-# set -g status-left '#{?client_prefix,#[fg=green],#[fg=red]}█'
-set -g status-left '#[fg=red]#[bg=red,fg=black] #[fg=red,bg=black]#[noreverse]'
+# set -g status-left '#{?client_prefix,#[fg=#{GREEN}],#[fg=#{RED}]}█ #{?client_prefix,#[fg=green],#[fg=#{RED}]}'
+set -g status-left '#{?client_prefix,#[fg=#{GREEN}],#[fg=#{RED}]}
+#{?client_prefix,#[bg=#{GREEN}],#[bg=#{RED}]}#[fg=black] 
+#{?client_prefix,#[fg=#{GREEN}],#[fg=#{RED}]}#[bg=black]'
 set -g status-left-length 100
 
 set -g status-right-style 'fg=black bg=blue'
@@ -73,19 +75,17 @@ set -g status-right '#[reverse]#[noreverse]%H:%M#[reverse]'
 
 # set -g status-right '#(gitmux "#{pane_current_path}")'
 
-setw -g window-status-current-style 'fg=black bg=red'
-setw -g window-status-current-format '#[reverse]#[noreverse]#I #W #F#[reverse]#[noreverse]'
+setw -g window-status-current-style 'fg=black bg=colour179'
+setw -g window-status-current-format '#[reverse]#[noreverse]#I #[bg=colour8]#W #F#[reverse]#[noreverse]'
 
-setw -g window-status-style 'fg=red bg=black'
+setw -g window-status-style 'fg=#{RED} bg=black'
 setw -g window-status-separator ""
 setw -g window-status-format ' #I #[fg=white]#W #[fg=yellow]#F '
 
-setw -g window-status-bell-style 'fg=yellow bg=red bold'
+setw -g window-status-bell-style 'fg=yellow bg=#{RED} bold'
 
 # messages
 set -g message-style 'fg=yellow bg=black bold'  
-
-set -g status-right '#{battery_status_bg} Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M '
     '';
   };
 }
