@@ -48,44 +48,74 @@ bind u capture-pane \;\
 # -------------
 
 #  modes
-setenv -g RED green
-setenv -g GREEN red
-setw -g clock-mode-colour yellow
-setw -g mode-style 'fg=black bg=#{RED} bold'
+setenv -g Rosewater '#f5e0dc'
+setenv -g Flamingo '#f2cdcd'
+setenv -g Pink '#f5c2e7'
+setenv -g Mauve '#cba6f7'
+setenv -g Red '#f38ba8'
+setenv -g Maroon '#eba0ac'
+setenv -g Peach '#fab387'
+setenv -g Yellow '#f9e2af'
+setenv -g Green '#a6e3a1'
+setenv -g Teal '#94e2d5'
+setenv -g Sky '#89dceb'
+setenv -g Sapphire '#74c7ec'
+setenv -g Blue '#89b4fa'
+setenv -g Lavender '#b4befe'
+setenv -g Text '#cdd6f4'
+setenv -g Subtext1 '#bac2de'
+setenv -g Subtext0 '#a6adc8'
+setenv -g Overlay2 '#9399b2'
+setenv -g Overlay1 '#7f849c'
+setenv -g Overlay0 '#6c7086'
+setenv -g Surface2 '#585b70'
+setenv -g Surface1 '#45475a'
+setenv -g Surface0 '#313244'
+setenv -g Base '#1e1e2e'
+setenv -g Mantle '#181825'
+setenv -g Crust '#11111b'
+
+# setw -g clock-mode-colour #{Yellow}
+setw -g mode-style 'fg=black bg=#{Red} bold'
 
 # panes
-set -g pane-border-style 'fg=#{RED}'
-set -g pane-active-border-style 'fg=yellow'
+set -g pane-border-style 'fg=#{Red}'
+set -g pane-active-border-style 'fg=#{Blue}'
 
 # run-shell ${battery}/share/tmux-plugins/battery/battery.tmux
 
 # statusbar
 set -g status-position top
 set -g status-justify left
-set -g status-style 'fg=#{RED}'
+set -g status-style 'fg=#{Red}'
 
-# set -g status-left '#{?client_prefix,#[fg=#{GREEN}],#[fg=#{RED}]}█ #{?client_prefix,#[fg=green],#[fg=#{RED}]}'
-set -g status-left '#{?client_prefix,#[fg=#{GREEN}],#[fg=#{RED}]}
-#{?client_prefix,#[bg=#{GREEN}],#[bg=#{RED}]}#[fg=black] 
-#{?client_prefix,#[fg=#{GREEN}],#[fg=#{RED}]}#[bg=black]'
+set -g status-left '#{?client_prefix,#[fg=#{Red}],#[fg=#{Green}]}
+#{?client_prefix,#[bg=#{Red}],#[bg=#{Green}]}#[fg=black] #S
+#{?client_prefix,#[fg=#{Red}],#[fg=#{Green}]}#[bg=black]   '
 set -g status-left-length 100
 
 set -g status-right-style 'fg=black bg=blue'
 set -g status-right '#[reverse]#[noreverse]%H:%M#[reverse]'
 
+# set -g status-right "#[align=absolute-centre] Hello, world! #[align=right]"
+# set -ga status-right "#{?window_bigger,[#{window_offset_x}#,#{window_offset_y}] ,}\ 📅 %d.%m.%y 🕰  %H:%M 💻 #{client_user}@#H "
+# set -g status-right-length 65
+
+
 # set -g status-right '#(gitmux "#{pane_current_path}")'
 
-setw -g window-status-current-style 'fg=black bg=colour179'
-setw -g window-status-current-format '#[reverse]#[noreverse]#I #[bg=colour8]#W #F#[reverse]#[noreverse]'
+# setw -g window-status-current-style 'fg=#{Text} bg=#{Peach}'
+# setw -g window-status-style 'fg=#{Text} bg=#{Mauve}'
 
-setw -g window-status-style 'fg=#{RED} bg=black'
-setw -g window-status-separator ""
-setw -g window-status-format ' #I #[fg=white]#W #[fg=yellow]#F '
+setw -g window-status-separator ' '
 
-setw -g window-status-bell-style 'fg=yellow bg=#{RED} bold'
+setw -g window-status-current-format '#[bg=black fg=#{Peach}]#[fg=#{Text} bg=#{Peach}]#I #[bg=#{Surface0}] #W #F#[bg=black fg=#{Surface0}]'
+setw -g window-status-format '#[bg=black fg=#{Overlay2}]#[fg=#{Text} bg=#{Overlay2}]#I #[bg=#{Surface2}] #W #F#[bg=black fg=#{Surface2}]'
+
+setw -g window-status-bell-style 'fg=#{Yellow} bg=#{Red} bold'
 
 # messages
-set -g message-style 'fg=yellow bg=black bold'  
+set -g message-style 'fg=#{Yellow} bg=black bold'  
     '';
   };
 }
