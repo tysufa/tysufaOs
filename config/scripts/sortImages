@@ -1,0 +1,85 @@
+isarg=0
+src=""
+dest=""
+mask=""
+change_dates=0
+show_help=0
+
+for arg do
+  if [[ $isarg != 0 ]] then
+    if [[ $isarg == 1 ]]
+    then
+      src=$arg
+    elif [[ $isarg == 2 ]]
+    then
+      dest=$arg
+    elif [[ $isarg == 3 ]]
+    then
+      mask=$arg
+    fi
+    isarg=0
+  fi
+  if [[ ${arg:0:1} == "-" ]] then
+    if [[ $arg == "--src" ]] || [[ $arg == "-s" ]]
+    then
+      isarg=1
+    elif [[ $arg == "--dest" ]] || [[ $arg == "-d" ]]
+    then
+      isarg=2
+    elif [[ $arg == "--mask" ]] || [[ $arg == "-m" ]]
+    then
+      isarg=3
+    elif [[ $arg == "--askdate" ]] || [[ $arg == "-a" ]]
+    then
+      change_dates=1
+    elif [[ $arg == "--help" ]] || [[ $arg == "-h" ]]
+    then
+      show_help=1
+    fi
+  fi
+done
+
+if [[ $show_help == 1 ]]
+then
+  echo "required arguments : "
+  echo "  --src"
+  echo "  --dest"
+  echo -e "  --mask\n"
+
+  echo "flags : "
+  echo "  --src (-s) : chemin complet du dossier contenant les images (i.e : ~/images)"
+  echo "  --dest (-d) : chemin complet du dossier de destination des images (i.e : ~/Galerie)"
+  echo "  --mask (-m) : expression regulière permettant de limiter la selection d'images (i.e : \"*.jpg\")"
+  echo "  --help (-h) : display this message"
+  echo "  --askdate (-a) : prompt you to enter a date when a image don't have one"
+
+elif [[ -z $src ]] || [[ -z $dest ]] || [[ -z $mask ]]
+then
+  echo "il manque des arguments, veuillez renseigner --src --dest et --mask svp"
+
+else
+  if [[ -d $src ]] && [[ -d $dest ]] then
+    for file in $(find $src -name "$mask"); do
+      file_date=$(exiftool $file | grep -i "date/time Original" | awk '{print $4}')
+
+      if [[ $change_dates == 1 ]] && [[ ${#file_date} == 0 ]] then
+        echo -n "date for $file (YYYY:MM:DD) : "
+        read file_date
+        file_date="$file_date 00:00:00"
+        echo $file_date
+        exiftool -datetimeoriginal="$file_date" $file
+      fi 
+
+      if ! [[ ${#file_date} == 0 ]] then
+        mkdir $dest/${file_date:0:4}/${file_date:5:2}/${file_date:8:2} -p
+        mv $file $dest/${file_date:0:4}/${file_date:5:2}/${file_date:8:2}
+        echo "$file: OK."
+      else
+        echo "$file: pas de date."
+      fi
+
+    done
+  else
+    echo "!!! le dossier src ou dest n'existe pas"
+  fi
+fi
