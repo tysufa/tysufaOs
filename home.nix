@@ -27,6 +27,7 @@
     ./config/tmux.nix
     ./config/hyprlock.nix
     ./config/wlogout/wlogout.nix
+    ./config/fastfetch.nix
   ];
 
   programs.kitty = {
