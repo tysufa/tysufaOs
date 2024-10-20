@@ -17,10 +17,10 @@ keymap.set({'t', 'n'}, '<C-t>', '<CMD>FloatermToggle<CR>', { desc = 'toggle floa
 -- Keybinds to make split navigation easier.
 
 --  See `:help wincmd` for a list of all window commands
-keymap.set('n', '<A-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-keymap.set('n', '<A-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-keymap.set('n', '<A-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-keymap.set('n', '<A-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+keymap.set('n', '<A-h>', '<C-w>h', { desc = 'Move focus to the left window' })
+keymap.set('n', '<A-l>', '<C-w>l', { desc = 'Move focus to the right window' })
+keymap.set('n', '<A-j>', '<C-w>j', { desc = 'Move focus to the lower window' })
+keymap.set('n', '<A-k>', '<C-w>k', { desc = 'Move focus to the upper window' })
 
 keymap.set('i', 'jk', '<ESC>', { desc = 'exit insert mode' })
 

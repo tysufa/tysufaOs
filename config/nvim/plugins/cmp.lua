@@ -1,9 +1,15 @@
 local cmp = require("cmp")
-local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
 -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-require("luasnip.loaders.from_vscode").lazy_load()
+-- require("luasnip.loaders.from_vscode").lazy_load()
+
+local ls = require("luasnip")
+local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
+
+
 
 cmp.setup({
   completion = {
@@ -11,17 +17,18 @@ cmp.setup({
   },
   snippet = { -- configure how nvim-cmp interacts with snippet engine
     expand = function(args)
-      luasnip.lsp_expand(args.body)
+      ls.lsp_expand(args.body)
     end,
   },
+
   mapping = cmp.mapping.preset.insert({
     ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
     ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+    ["<C-n>"] = cmp.mapping.complete(), -- show completion suggestions
     ["<C-e>"] = cmp.mapping.abort(), -- close completion window
-    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
   }),
   -- sources for autocompletion
   sources = cmp.config.sources({
@@ -43,3 +50,14 @@ cmp.setup({
     }),
   },
 })
+
+
+vim.keymap.set({"i"}, "<A-k>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<A-l>", function() ls.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<A-h>", function() ls.jump(-1) end, {silent = true})
+
+
+
+ls.add_snippets("all", {s("trig", {
+	i(1), t"text", i(2), t"text again", i(3)
+})})
