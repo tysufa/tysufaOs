@@ -45,9 +45,9 @@
         all-outputs = true;
         format = "{icon}";
         format-icons = {
-          default = "";
-          active = "";
-          urgent = "";
+          default = "";
+          active = "";
+          urgent = "";
         };
         persistent_workspaces = {
             "1"= [];
@@ -260,7 +260,7 @@ tooltip {
     border-style: solid;
     border-color: @crust;
 }
-
+/*
 #workspaces button {
     padding: 5px;
     color: @surface0;
@@ -288,6 +288,47 @@ tooltip {
     color: #cdd6f4;
     border-radius: 10px;
 }
+*/
+
+#workspaces {
+    background: @crust;
+    margin: 2px 1px 3px 1px;
+    padding: 0px 1px;
+    border-radius: 15px;
+    border: 0px;
+    font-weight: bold;
+    font-style: normal;
+    opacity: 1;
+    font-size: 6px;
+    color: @crust;
+}
+
+#workspaces button {
+    padding: 0px 5px;
+    margin: 5px 3px;
+    border-radius: 15px;
+    border: 0px;
+    color: @text;
+    background-color: @lavender;
+    transition: all 0.3s ease-in-out;
+    opacity: 1;
+}
+
+#workspaces button.active {
+    color: @text;
+    background: @blue;
+    border-radius: 15px;
+    min-width: 40px;
+    transition: all 0.3s ease-in-out;
+    opacity:1.0;
+}
+
+#workspaces button:hover {
+    color: @text;
+    background: @peach;
+    border-radius: 15px;
+    opacity:1;
+}
 
 #custom-language,
 #custom-updates,
@@ -298,8 +339,8 @@ tooltip {
 #clock,
 #battery,
 #pulseaudio,
-#network,
 #workspaces,
+#network,
 #tray,
 #backlight {
     background: @base;
