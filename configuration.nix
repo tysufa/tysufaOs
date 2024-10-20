@@ -181,6 +181,7 @@
     fzf
     yazi # terminal file manager with lots of customization
     cool-retro-term
+    pipes
 
     wl-clipboard # clipboard for wayland
     hyprpicker # selectionneur de couleur
@@ -212,15 +213,17 @@
 
     nh #nix helper 
 
-    fastfetch
     ripgrep # dependencie for neovim to grep search on files
     nautilus # file manager
     brightnessctl # to change luminosity on hyprland
+    
     kitty
+    alacritty
     neovim
     # inputs.nixpkgsstable.legacyPackages.${pkgs.system}.neovim
     git
     vim
+    unzip
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
