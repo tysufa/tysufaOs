@@ -167,9 +167,12 @@
     R
     ocaml
     gcc
+    cmake
+    gnumake
     python3
     go
     cobra-cli # Cobra CLI tool to generate applications and commands, cobra is a go module to make cli apps
+    qtcreator
 
     eza # ls but with better presentation
     tree
