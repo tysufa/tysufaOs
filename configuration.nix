@@ -96,7 +96,8 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["JetBrainsMono"];})
+    # (nerdfonts.override {fonts = ["JetBrainsMono"];})
+    nerd-fonts.jetbrains-mono
   ];
 
 
@@ -162,17 +163,19 @@
     
     spotify
     discord
+    floorp
+    qbittorrent
 
+    vscode
 
     R
     ocaml
     gcc
     cmake
-    gnumake
+    gnumake # apparently make is included in cmake but I leave it there just because it makes it clearer
     python3
     go
     cobra-cli # Cobra CLI tool to generate applications and commands, cobra is a go module to make cli apps
-    qtcreator
 
     eza # ls but with better presentation
     tree
@@ -227,6 +230,7 @@
     git
     vim
     unzip
+    wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

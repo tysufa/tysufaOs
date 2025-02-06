@@ -4,6 +4,7 @@ local keymap = vim.keymap
 keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "clear search highlight"})
 
 keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = "go to next buffer "})
+keymap.set('n', '<S-Tab>', '<cmd>bprevious<CR>', { desc = "go to previous buffer "})
 
 -- Diagnostic keymaps
 keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })

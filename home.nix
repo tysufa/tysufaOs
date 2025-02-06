@@ -101,7 +101,6 @@
     fuzzel.enable = true;
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
-    hyprlock.enable = true;
   };
 
   programs.bash = {

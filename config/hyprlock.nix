@@ -1,10 +1,11 @@
 { pkgs, ... }:
 
 {
+  stylix.targets.hyprlock.enable = false;
   programs.hyprlock = {
     enable = true;
     extraConfig = ''
-      source = ~/tysufaOs/config/hypr/mocha.conf
+source = ~/tysufaOs/config/hypr/mocha.conf
 
 $accent = $mauve
 $accentAlpha = $mauveAlpha
