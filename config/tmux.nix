@@ -33,10 +33,10 @@ set -sg escape-time 1
 # set -g allow-rename off
 
 # Use Alt-arrow keys without prefix key to switch panes
-bind -n M-j select-pane -L
+bind -n M-h select-pane -L
+bind -n M-j select-pane -U
+bind -n M-k select-pane -D
 bind -n M-l select-pane -R
-bind -n M-u select-pane -U
-bind -n M-d select-pane -D
 
 # present a menu of URLs to open from the visible pane. sweet.
 bind u capture-pane \;\
