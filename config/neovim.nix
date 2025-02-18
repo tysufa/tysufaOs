@@ -24,6 +24,8 @@ in
       extraPackages = with pkgs; [
         typescript-language-server # for js
         ocamlPackages.ocaml-lsp
+        ocamlPackages.dune_3
+        ocamlPackages.ocaml
         clang-tools
         lua-language-server
         gopls
