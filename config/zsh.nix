@@ -4,7 +4,7 @@
   programs.zsh = {
     enable = true;
     history.size = 10000;
-    history.path = "/home/tysufa/zsh/history";
+    history.path = "/home/tysufa/.zsh/history";
     initExtra = ''
         setopt hist_ignore_space
 
@@ -17,6 +17,7 @@
         zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
         zstyle ':fzf-tab:complete:ls:*' fzf-preview 'cat $realpath'
         zstyle ':completion:*' menu no
+        eval "$(zoxide init zsh)"
     '';
     shellAliases = {
       sv = "sudo nvim";

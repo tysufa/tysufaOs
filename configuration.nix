@@ -40,7 +40,8 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Europe/Paris";
+  # time.timeZone = "Europe/Paris";
+  time.timeZone = "Asia/Taipei";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "fr_FR.UTF-8";
@@ -178,6 +179,7 @@
     cobra-cli # Cobra CLI tool to generate applications and commands, cobra is a go module to make cli apps
 
     eza # ls but with better presentation
+    zoxide # better cd
     tree
     bat
     acpi # get battery level
