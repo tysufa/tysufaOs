@@ -70,8 +70,8 @@ alias gc="git commit -m"
 # for some reason, this variable is set which break pass, so we remove it to use xclip instead of wl-copy
 unset WAYLAND_DISPLAY
 
-alias gp="pass -c programmation/github && xclip -o -selection "$X_SELECTION" | clip.exe && git push"
-alias gt="pass -c programmation/github && xclip -o -selection "$X_SELECTION" | clip.exe"
+alias gp="pass -c programmation/github && git push"
+alias gt="pass -c programmation/github"
 alias glog="git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
 alias ".."="cd .."
 alias "..."="cd ../.."

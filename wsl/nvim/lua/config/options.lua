@@ -13,6 +13,16 @@ vim.opt.autoindent = true
 
 vim.opt.wrap = false
 
+vim.o.termguicolors = true
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  pattern = "*",
+  callback = function()
+    vim.opt.colorcolumn = "+1"
+  end
+})
+
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal-- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 

@@ -1,10 +1,11 @@
+---@diagnostic disable: missing-fields
 return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function () 
-        local configs = require("nvim-treesitter.configs")
-
-        configs.setup({
+        require("nvim-treesitter.configs").setup({
+            auto_install = false,
+            ignore_install = { "javascript" },
             ensure_installed = { "c", "lua", "vim", "cpp"},
             sync_install = false,
             highlight = { enable = true },
