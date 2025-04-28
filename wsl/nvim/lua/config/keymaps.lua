@@ -15,35 +15,6 @@ vim.keymap.set("n", "<M-k>", ":cprev<CR>")
 vim.keymap.set("n", "gp", ":bnext<CR>")
 vim.keymap.set("n", "gP", ":bprev<CR>")
 
--- virtual text and lines toggles
-local virtual_text_enabled = true
-local virtual_line_enabled = false
-
-function ToggleDiagnostics(is_virtual_line)
-	if is_virtual_line then
-		virtual_line_enabled = not virtual_line_enabled
-		vim.diagnostic.config({
-			virtual_lines = virtual_line_enabled and { current_line = false },
-			virtual_text = virtual_text_enabled and { current_line = true },
-		})
-		print("Virtual line " .. (virtual_text_enabled and "ON" or "OFF"))
-	else
-		virtual_text_enabled = not virtual_text_enabled
-		vim.diagnostic.config({
-			virtual_lines = virtual_line_enabled and { current_line = false },
-			virtual_text = virtual_text_enabled and { current_line = true },
-		})
-		print("Virtual text " .. (virtual_text_enabled and "ON" or "OFF"))
-	end
-end
-
-vim.keymap.set("n", "<leader>tvl", function()
-	ToggleDiagnostics(true)
-end, { desc = "Toggle virtual text" })
-vim.keymap.set("n", "<leader>tvt", function()
-	ToggleDiagnostics(false)
-end, { desc = "Toggle virtual lines" })
-
 -- show macro recording leave and enter
 vim.api.nvim_create_autocmd("RecordingLeave", {
 	callback = function(ev)
@@ -51,6 +22,33 @@ vim.api.nvim_create_autocmd("RecordingLeave", {
 		vim.notify("recording " .. reg .. "over : " .. vim.v.event.regcontents, vim.log.levels.INFO)
 	end,
 })
+
+local wk = require("which-key")
+
+-- Generalized toggle function
+function ToggleFeature(keymap, toggle_state, cmd, description)
+	vim.cmd(cmd)
+	toggle_state = not toggle_state
+
+	local desc = toggle_state and "  " .. description or "  " .. description
+
+	vim.keymap.set("n", keymap, function()
+		vim.cmd(KeymapCommand(keymap, toggle_state, cmd, description))
+	end, { desc = desc })
+	return toggle_state
+end
+
+function KeymapCommand(keymap, toggle_state, cmd, desc)
+	return "lua ToggleFeature('" .. keymap .. "', " .. tostring(toggle_state) .. ", '" .. cmd .. "', '" .. desc .. "')"
+end
+
+local cmd = "lua vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines })"
+vim.cmd(KeymapCommand("<leader>tl", vim.diagnostic.config().virtual_lines, cmd, "virtual lines"))
+vim.cmd(KeymapCommand("<leader>tl", vim.diagnostic.config().virtual_lines, cmd, "virtual lines"))
+
+cmd = "lua vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })"
+vim.cmd(KeymapCommand("<leader>tt", vim.diagnostic.config().virtual_text, cmd, "virtual text"))
+vim.cmd(KeymapCommand("<leader>tt", vim.diagnostic.config().virtual_text, cmd, "virtual text"))
 
 -- make a hovering info for diagnostics
 vim.keymap.set("n", "<leader>e", function()

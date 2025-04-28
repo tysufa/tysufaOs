@@ -67,6 +67,8 @@ alias ga="git add"
 alias gaa="git add --all"
 alias gc="git commit -m"
 
+EDITOR=nvim
+
 # for some reason, this variable is set which break pass, so we remove it to use xclip instead of wl-copy
 unset WAYLAND_DISPLAY
 

@@ -66,13 +66,6 @@ return {
 			desc = "Grep",
 		},
 		{
-			"<leader>:",
-			function()
-				Snacks.picker.command_history()
-			end,
-			desc = "Command History",
-		},
-		{
 			"<leader>n",
 			function()
 				Snacks.picker.notifications()
@@ -403,13 +396,6 @@ return {
 				Snacks.notifier.hide()
 			end,
 			desc = "[CL]ear All Notifications",
-		},
-		{
-			"<leader>tm",
-			function()
-				Snacks.terminal()
-			end,
-			desc = "Toggle [T]er[m]inal",
 		},
 		{
 			"<c-_>",
