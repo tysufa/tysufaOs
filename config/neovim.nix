@@ -40,8 +40,16 @@ in
         marksman
       ];
       plugins = with pkgs.vimPlugins; [
+
+        vim-wakatime # wakatime
+
         catppuccin-nvim
         alpha-nvim # pretty startup screen
+
+        # c++
+        nvim-dap
+        nvim-dap-ui
+        nvim-dap-virtual-text
 
         vim-floaterm # floating terminal
         mini-nvim # dependencie for render-markdown
@@ -112,6 +120,7 @@ in
         ${builtins.readFile ./nvim/plugins/noice.lua}
         ${builtins.readFile ./nvim/plugins/catppuccin.lua}
         ${builtins.readFile ./nvim/plugins/alpha.lua}
+        ${builtins.readFile ./nvim/plugins/debugger.lua}
         require("bufferline").setup{}
         require("oil").setup()
         -- require("startup").setup({theme = "evil"})

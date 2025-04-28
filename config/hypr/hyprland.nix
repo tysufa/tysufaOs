@@ -25,9 +25,8 @@
             resize_on_border = true
           }
           input {
-            kb_layout = fr
-            kb_options = grp:alt_shift_toggle
-            kb_options = caps:super
+            kb_layout = us,fr
+            kb_options = grp:alt_space_toggle,caps:escape
             follow_mouse = 1
             touchpad {
               natural_scroll = false
@@ -42,6 +41,8 @@
           windowrule = float, title:(rofi*)
           windowrule = noborder, title:(rofi*)
           windowrule = center, title:(rofi*)
+          windowrulev2 = stayfocused,class:^(ulauncher)$ # keep ulauncher focused
+          windowrulev2 = stayfocused,class:^(albert)$ # keep albert focused
           windowrulev2 = stayfocused, title:^()$,class:^(steam)$
           windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
           windowrulev2 = opacity 0.9 0.7, class:^(Brave)$
@@ -95,6 +96,7 @@
           bind = ${modifier},D,exec,kitty
           bind = ${modifier}SHIFT,D,exec,cool-retro-term
           bind = ${modifier}SHIFT,Return,exec,rofi -show drun
+          bind = ${modifier},R, exec , albert toggle || albert
 
           bind = ${modifier}ALT ,F,exec,web-search
           bind = ${modifier}ALT,W,exec,wallsetter
@@ -116,6 +118,7 @@
           bind = ${modifier}SHIFT,F,fullscreen,
           bind = ${modifier},V,togglefloating,
           bind = ${modifier}SHIFT,L,exec,hyprlock
+          bind = ${modifier}SHIFT,U,exec,systemctl suspend && hyprlock
           bind = ${modifier},M,exec,wlogout
           bind = ${modifier}SHIFT,M,exit,
           bind = ${modifier}SHIFT,left,movewindow,l
