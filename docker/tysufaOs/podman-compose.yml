@@ -4,5 +4,6 @@ services:
     image: tysufaos
     volumes:
       - ~/tysufaOs/docker/container-nvim-data:/home/tysufa/.local
+      - ~/programmation:/home/tysufa/programmation
     stdin_open: true  # -i
     tty: true         # -t

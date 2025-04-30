@@ -1,0 +1,1 @@
+/home/tysufa/tysufaOs/wsl/nvim/lua/plugins/snacks.lua
