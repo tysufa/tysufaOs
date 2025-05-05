@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgsstable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
     stylix.url = "github:danth/stylix";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
