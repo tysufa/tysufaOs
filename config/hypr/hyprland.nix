@@ -34,10 +34,7 @@
             sensitivity = 1.0 # -1.0 - 1.0, 0 means no modification.
             accel_profile = flat
           }
-          windowrule = center,^(steam)$
-          windowrule = float, nm-connection-editor|blueman-manager
-          windowrule = float, swayimg|vlc|Viewnior|pavucontrol
-          windowrule = float, nwg-look|qt5ct|mpv
+          windowrule = center,^(class:steam)$
           windowrule = float, title:(rofi*)
           windowrule = noborder, title:(rofi*)
           windowrule = center, title:(rofi*)
@@ -102,7 +99,6 @@
           bind = ${modifier}ALT,W,exec,wallsetter
           bind = ${modifier}SHIFT,N,exec,swaync-client -rs
           bind = ${modifier}SHIFT,E,exec,emopicker9000
-          bind = ${modifier}SHIFT,S,exec,screenshootin
           bind = ${modifier}SHIFT,I,togglesplit,
 
           # windowrulv2 = float, title:^(lnks)$
@@ -110,7 +106,7 @@
           bind = ${modifier}SHIFT,B,exec, [float;noanim] kitty -e ~/tysufaOs/config/scripts/lnks/lnks.sh -e 
           bind = ${modifier},F,exec,firefox
           bind = ${modifier},C,exec,hyprpicker -a
-          bind = ${modifier}SHIFT,P,exec,grim -g $(slurp)
+          bind = ${modifier}SHIFT,S,exec,grim -g "$(slurp)" - | wl-copy && notify-send "screenshot copied"
           bind = ${modifier},E,exec,nautilus
           bind = ${modifier},S,exec,spotify
           bind = ${modifier},Q,killactive,
