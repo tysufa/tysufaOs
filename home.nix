@@ -25,6 +25,7 @@
     ./config/rofi.nix
     ./config/zsh.nix
     ./config/tmux.nix
+    ./config/zellij.nix
     ./config/hyprlock.nix
     ./config/wlogout/wlogout.nix
     ./config/fastfetch.nix
