@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, inputs, lib, ... }:
 
 {
   imports =
@@ -85,7 +85,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -113,7 +113,9 @@
     shell = pkgs.zsh; 
   };
 
+  virtualisation.containers.enable = true;
   virtualisation.docker.enable = true; # install docker
+  virtualisation.podman.enable = true;
 
   # enable hyprland
   programs = {
@@ -150,6 +152,8 @@
     EDITOR = "vim";
   };
 
+    
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -165,19 +169,34 @@
     spotify
     discord
     floorp
+    inputs.zen-browser.packages."${system}".default
+    vivaldi
+    mullvad-browser
     qbittorrent
+
+    lunatask
 
     vscode
 
     R
     ocaml
     gcc
+    clang
+    gdb
     cmake
     gnumake # apparently make is included in cmake but I leave it there just because it makes it clearer
-    python3
+
+    (python311.withPackages(ps: with ps; [
+      # required for calculate extension of ulauncher
+      # requests
+      # pint
+      # parsedatetime
+    ]))
+
     go
     cobra-cli # Cobra CLI tool to generate applications and commands, cobra is a go module to make cli apps
 
+    tldr # ls but with better presentation
     eza # ls but with better presentation
     zoxide # better cd
     tree
@@ -191,6 +210,9 @@
     cool-retro-term
     pipes
 
+    albert
+    ulauncher
+
     wl-clipboard # clipboard for wayland
     hyprpicker # selectionneur de couleur
     hyprshot # screenshot
@@ -198,6 +220,7 @@
     grim
     slurp
     libnotify
+    dunst
     swww #wallpaper manager
 
     walker # highly extensible application launcher
@@ -215,24 +238,26 @@
     })
 
 
-    # pour eliot
-    uwuify
-    uwufetch
-
     nh #nix helper 
 
-    ripgrep # dependencie for neovim to grep search on files
+    # wakatime-cli # dependency for wakatime plugin in neovim
+    ripgrep # dependency for neovim to grep search on files
     nautilus # file manager
     brightnessctl # to change luminosity on hyprland
     
     kitty
     alacritty
+    ghostty
+    zed-editor
     neovim
     # inputs.nixpkgsstable.legacyPackages.${pkgs.system}.neovim
     git
     vim
     unzip
     wget
+
+    # network communication class
+    traceroute
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
