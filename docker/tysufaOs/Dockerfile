@@ -4,11 +4,11 @@ FROM docker.io/archlinux:latest
 RUN pacman -Sy --noconfirm archlinux-keyring
 
 # System update
-RUN pacman -Syu --noconfirm
+RUN pacman -Syyu --noconfirm
 
 # Install your packages
 RUN pacman -S --noconfirm --needed \
-    git neovim python nodejs npm unzip gcc
+    git neovim python nodejs npm unzip gcc cmake make base-devel glibc binutils fakeroot
 RUN pacman -S --noconfirm tldr lsd zsh fzf eza zoxide zellij
 RUN curl -s https://ohmyposh.dev/install.sh | bash -s -- -d /usr/local/bin
 
