@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<SaveGameData z="1">
+<portraitName>graphics/portraits/portrait_luddic16.png</portraitName>
+<characterName>tysufa</characterName>
+<saveFileVersion>0.6</saveFileVersion>
+<gameVersion>0.98a-RC8</gameVersion>
+<characterLevel>8</characterLevel>
+<compressed>false</compressed>
+<isIronMode>false</isIronMode>
+<difficulty>easy</difficulty>
+<gameDate z="2">
+<secondsPerDay>10.0</secondsPerDay>
+<timestamp>-55503030296000</timestamp>
+</gameDate>
+<saveDate z="3">2025-05-31 15:40:07.982 UTC</saveDate>
+<slotCreationTimestamp>1748706007982</slotCreationTimestamp>
+<allModsEverEnabled z="4"></allModsEverEnabled>
+<enabledMods z="5"></enabledMods>
+<desc>paragon potentiellement</desc>
+<locDesc>Askonia Star System</locDesc>
+<autosave>false</autosave>
+</SaveGameData>

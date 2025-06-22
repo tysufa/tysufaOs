@@ -1,0 +1,202 @@
+// layer = "top";
+// position = "top";
+// modules-left = [
+//   "hyprland/workspaces"
+//   "clock"
+//   # "cpu"
+//   # "memory"
+// ];
+// modules-center = [ "custom/music" "custom/wallpaper"];
+// modules-right = [
+//   "tray"
+//   "network"
+//   "backlight"
+//   "pulseaudio"
+//   "battery"
+//   # "custom/hyprbindings"
+//   # "custom/notification"
+//   # "custom/exit"
+// ];
+// "custom/wallpaper" = {
+//   "tooltip" = false;
+//   "format" = "󰸉 ";
+//   "on-click" = "sh ~/tysufaOs/config/scripts/change_wallpaper.sh";
+// };
+//
+// "custom/music" = {
+//   "format"= "{}";
+//   "format-icons" = {
+//     "Playing" = " ";
+//     "Paused" = " ";
+//   };
+//   "escape"= true;
+//   "interval"= 5;
+//   "tooltip" = false;
+//   "exec" = "playerctl metadata --format='{{ title }}'";
+//   "on-click" = "playerctl play-pause";
+//   "on-scroll-up" = "playerctl -p spotify next";
+//   "on-scroll-down" = "playerctl -p spotify previous";
+// };
+// "hyprland/workspaces" = {
+//   disable-scroll = true;
+//   all-outputs = true;
+//   format = "{icon}";
+//   format-icons = {
+//     default = "";
+//     active = "";
+//     urgent = "";
+//   };
+//   persistent_workspaces = {
+//     "1"= [];
+//     "2"= [];
+//     "3"= [];
+//     "4"= [];
+//     "5"= [];
+//     "6"= [];
+//     "7"= [];
+//     "8"= [];
+//     "9"= [];
+//     "10"= [];
+//   };
+//   on-scroll-up = "hyprctl dispatch workspace e+1";
+//   on-scroll-down = "hyprctl dispatch workspace e-1";
+// };
+// "clock" = {
+//   format = '' {:L%H:%M  %d/%m}'';
+//   # format = ''{: L%H:%M   %d/%m}'';
+//   tooltip = false;
+//   tooltip-format = "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>";
+// };
+// "hyprland/window" = {
+//   max-length = 22;
+//   separate-outputs = false;
+//   rewrite = {
+//     "" = "No Windows";
+//   };
+// };
+// "memory" = {
+//   interval = 5;
+//   format = " {}%";
+//   tooltip = true;
+// };
+// "cpu" = {
+//   interval = 5;
+//   format = " {usage:2}%";
+//   tooltip = true;
+// };
+// "disk" = {
+//   format = " {free}";
+//   tooltip = true;
+// };
+// "network" = {
+//   format-icons = [
+//     "󰤯"
+//     "󰤟"
+//     "󰤢"
+//     "󰤥"
+//     "󰤨"
+//   ];
+//   format-ethernet = " {bandwidthDownOctets}";
+//   format-wifi = "{icon}";
+//   format-disconnected = "󰤮";
+//   tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
+// };
+// "backlight" = {
+//   "device"= "intel_backlight";
+//   "format"= "{icon} {percent}%";
+//   "format-icons"= ["" "" "" "" "" "" "" "" ""];
+//   "on-scroll-up"= "brightnessctl set 1%+";
+//   "on-scroll-down"= "brightnessctl set 1%-";
+//   "min-length"= 6;
+// };
+// "tray" = {
+//   spacing = 12;
+// };
+// "pulseaudio" = {
+//   format = "{icon} {volume}% {format_source}";
+//   format-bluetooth = "{volume}% {icon} {format_source}";
+//   format-bluetooth-muted = " {icon} {format_source}";
+//   format-muted = " 󰝟 {format_source}";
+//   # format-source = " {volume}%";
+//   format-source-muted = "";
+//   format-icons = {
+//     headphone = "";
+//     hands-free = "";
+//     headset = "";
+//     phone = "";
+//     portable = "";
+//     car = "";
+//     default = [
+//       ""
+//       ""
+//       ""
+//     ];
+//   };
+//   on-click = "sleep 0.1 && pavucontrol";
+// };
+// "custom/exit" = {
+//   tooltip = false;
+//   format = "";
+//   on-click = "sleep 0.1 && wlogout";
+// };
+// "custom/startmenu" = {
+//   tooltip = false;
+//   format = "";
+//   # exec = "rofi -show drun";
+//   on-click = "sleep 0.1 && rofi -show drun";
+// };
+// "custom/hyprbindings" = {
+//   tooltip = false;
+//   format = "󱕴";
+//   on-click = "sleep 0.1 && list-hypr-bindings";
+// };
+// "idle_inhibitor" = {
+//   format = "{icon}";
+//   format-icons = {
+//     activated = "";
+//     deactivated = "";
+//   };
+//   tooltip = "true";
+// };
+// "custom/notification" = {
+//   tooltip = false;
+//   format = "{icon} {}";
+//   format-icons = {
+//     notification = "<span foreground='red'><sup></sup></span>";
+//     none = "";
+//     dnd-notification = "<span foreground='red'><sup></sup></span>";
+//     dnd-none = "";
+//     inhibited-notification = "<span foreground='red'><sup></sup></span>";
+//     inhibited-none = "";
+//     dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
+//     dnd-inhibited-none = "";
+//   };
+//   return-type = "json";
+//   exec-if = "which swaync-client";
+//   exec = "swaync-client -swb";
+//   on-click = "sleep 0.1 && task-waybar";
+//   escape = true;
+// };
+// "battery" = {
+//   states = {
+//     warning = 30;
+//     critical = 15;
+//   };
+//   format = "{icon} {capacity}%";
+//   format-charging = "󰂄 {capacity}%";
+//   format-plugged = "󱘖 {capacity}%";
+//   format-icons = [
+//     "󰁺"
+//     "󰁻"
+//     "󰁼"
+//     "󰁽"
+//     "󰁾"
+//     "󰁿"
+//     "󰂀"
+//     "󰂁"
+//     "󰂂"
+//     "󰁹"
+//   ];
+//   on-click = "";
+//   tooltip = false;
+// };

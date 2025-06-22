@@ -1,0 +1,81 @@
+-- -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+--
+-- local capabilities = require('blink.cmp').get_lsp_capabilities()
+--
+-- local lua_ls =  {
+--   cmd = {"lua-language-server"},
+--   root_markers = {".luarc.json"},
+--   filetypes = { "lua" },
+--   settings = {
+--     Lua = {
+--       diagnostics = { globals = { 'vim' } },
+--     },
+--     hint = {
+--       enable = true,
+--       setType = true,
+--       semicolon = "All",
+--     },
+--   }
+-- }
+--
+--
+-- lua_ls.capabilities = vim.tbl_deep_extend('force', {}, capabilities, lua_ls.capabilities or {})
+--
+-- vim.lsp.config("lua_ls", lua_ls)
+--
+-- require("lspconfig").lua_ls.setup{}
+--
+-- -- vim.lsp.enable("lua_ls")
+--
+--
+-- vim.lsp.config.clangd = {
+--   cmd = { 'clangd', '--background-index' },
+--   root_markers = { 'compile_commands.json', 'compile_flags.txt' },
+--   filetypes = { 'c', 'cpp' },
+--   settings = {
+--     clangd = {
+--       InlayHints = {
+--         Designators = true,
+--         Enabled = true,
+--         ParameterNames = true,
+--         DeducedTypes = true,
+--       }
+--     },
+--   }
+-- }
+--
+-- vim.lsp.enable({'clangd'})
+--
+-- vim.diagnostic.config({
+--   virtual_lines = false,
+--   virtual_text = { current_line = true, },
+-- })
+--
+--
+-- -- spinner notification for lsp progress
+-- vim.api.nvim_create_autocmd("LspProgress", {
+--   ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
+--   callback = function(ev)
+--     local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+--     vim.notify(vim.lsp.status(), "info", {
+--       id = "lsp_progress",
+--       title = "LSP Progress",
+--       opts = function(notif)
+--         notif.icon = ev.data.params.value.kind == "end" and " "
+--           or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+--       end,
+--     })
+--   end,
+-- })
+--
+--
+--
+--
+-- -- vim.api.nvim_create_autocmd('LspAttach', {
+-- --   callback = function(ev)
+-- --     local client = vim.lsp.get_client_by_id(ev.data.client_id)
+-- --     if client:supports_method('textDocument/completion') then
+-- --       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+-- --     end
+-- --   end,
+-- -- })

@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<SaveGameData z="1">
+<portraitName>graphics/portraits/portrait_luddic16.png</portraitName>
+<characterName>tysufa</characterName>
+<saveFileVersion>0.6</saveFileVersion>
+<gameVersion>0.98a-RC8</gameVersion>
+<characterLevel>8</characterLevel>
+<compressed>false</compressed>
+<isIronMode>false</isIronMode>
+<difficulty>easy</difficulty>
+<gameDate z="2">
+<secondsPerDay>10.0</secondsPerDay>
+<timestamp>-55554406345000</timestamp>
+</gameDate>
+<saveDate z="3">2025-05-31 08:29:31.430 UTC</saveDate>
+<slotCreationTimestamp>1748680171430</slotCreationTimestamp>
+<allModsEverEnabled z="4"></allModsEverEnabled>
+<enabledMods z="5"></enabledMods>
+<locDesc>Dawud Star System</locDesc>
+<autosave>true</autosave>
+</SaveGameData>

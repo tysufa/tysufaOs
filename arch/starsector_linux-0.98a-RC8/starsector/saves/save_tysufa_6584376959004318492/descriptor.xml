@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<SaveGameData z="1">
+<portraitName>graphics/portraits/portrait_luddic16.png</portraitName>
+<characterName>tysufa</characterName>
+<saveFileVersion>0.6</saveFileVersion>
+<gameVersion>0.98a-RC8</gameVersion>
+<characterLevel>6</characterLevel>
+<compressed>false</compressed>
+<isIronMode>false</isIronMode>
+<difficulty>easy</difficulty>
+<gameDate z="2">
+<secondsPerDay>10.0</secondsPerDay>
+<timestamp>-55580830136000</timestamp>
+</gameDate>
+<saveDate z="3">2025-05-30 19:15:36.661 UTC</saveDate>
+<slotCreationTimestamp>1748632536661</slotCreationTimestamp>
+<allModsEverEnabled z="4"></allModsEverEnabled>
+<enabledMods z="5"></enabledMods>
+<desc>apres achat du nouveau vaisseau</desc>
+<locDesc>Valac Star System</locDesc>
+<autosave>false</autosave>
+</SaveGameData>
