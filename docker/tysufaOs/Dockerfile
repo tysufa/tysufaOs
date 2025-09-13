@@ -33,8 +33,7 @@ RUN mkdir ~/.config
 RUN ln -s ~/tysufaOs/wsl/nvim ~/.config/
 RUN ln -s ~/tysufaOs/wsl/zshrc ~/.zshrc
 RUN ln -s ~/tysufaOs/wsl/ohmyposh/ ~/.config/oh-my-posh
-RUN ln -s ~/tysufaOs/wsl/zellij/ ~/.config/
-
+RUN ln -s ~/tysufaOs/wsl/zellij/ ~/.config/ && echo "delete cache"
 
 # install lsps
 # RUN git clone https://github.com/williamboman/mason.nvim ~/.config/nvim/lua/mason && \

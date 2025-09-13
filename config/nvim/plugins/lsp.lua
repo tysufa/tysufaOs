@@ -40,6 +40,6 @@ require'lspconfig'.marksman.setup{}
 require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.yamlls.setup{}
 require'lspconfig'.bashls.setup{}
-require'lspconfig'.clangd.setup{}
+require'lspconfig'.clangd.setup{cmd = { "clangd", "--compile-commands-dir=." }}
 require'lspconfig'.ocamllsp.setup{}
 require'lspconfig'.tsserver.setup{}

@@ -104,12 +104,12 @@ set -g status-right '#[reverse]#[noreverse]%H:%M#[reverse]'
 
 # set -g status-right '#(gitmux "#{pane_current_path}")'
 
-# setw -g window-status-current-style 'fg=#{Text} bg=#{Peach}'
+# setw -g window-status-current-style 'fg=#{Text} bg=#{Mauve}'
 # setw -g window-status-style 'fg=#{Text} bg=#{Mauve}'
 
 setw -g window-status-separator ' '
 
-setw -g window-status-current-format '#[bg=black fg=#{Peach}]#[fg=#{Text} bg=#{Peach}]#I #[bg=#{Surface0}] #W #F#[bg=black fg=#{Surface0}]'
+setw -g window-status-current-format '#[bg=black fg=#{Mauve}]#[fg=#{Text} bg=#{Mauve}]#I #[bg=#{Surface0}] #W #F#[bg=black fg=#{Surface0}]'
 setw -g window-status-format '#[bg=black fg=#{Overlay2}]#[fg=#{Text} bg=#{Overlay2}]#I #[bg=#{Surface2}] #W #F#[bg=black fg=#{Surface2}]'
 
 setw -g window-status-bell-style 'fg=#{Yellow} bg=#{Red} bold'

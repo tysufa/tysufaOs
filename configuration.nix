@@ -206,6 +206,7 @@
     btop
     killall
     fzf
+    atuin
     yazi # terminal file manager with lots of customization
     cool-retro-term
     pipes

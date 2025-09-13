@@ -23,9 +23,6 @@ in
       withNodeJs = true;
       extraPackages = with pkgs; [
         typescript-language-server # for js
-        ocamlPackages.ocaml-lsp
-        ocamlPackages.dune_3
-        ocamlPackages.ocaml
         clang-tools
         lua-language-server
         gopls
@@ -33,15 +30,17 @@ in
         luajitPackages.lua-lsp
         luajitPackages.jsregexp
         nil
-        rust-analyzer
         nodePackages.bash-language-server
-        yaml-language-server
         pyright
         marksman
+
+        wakatime-cli # dependency for wakatime plugin in neovim
       ];
       plugins = with pkgs.vimPlugins; [
 
         vim-wakatime # wakatime
+
+        snacks-nvim
 
         catppuccin-nvim
         alpha-nvim # pretty startup screen
@@ -106,7 +105,6 @@ in
         ${builtins.readFile ./nvim/init.lua}
         ${builtins.readFile ./nvim/options.lua}
         ${builtins.readFile ./nvim/keymaps.lua}
-        ${builtins.readFile ./nvim/plugins/which-key.lua}
         ${builtins.readFile ./nvim/plugins/autopairs.lua}
         ${builtins.readFile ./nvim/plugins/comment.lua}
         ${builtins.readFile ./nvim/plugins/luasnip.lua}
@@ -121,6 +119,9 @@ in
         ${builtins.readFile ./nvim/plugins/catppuccin.lua}
         ${builtins.readFile ./nvim/plugins/alpha.lua}
         ${builtins.readFile ./nvim/plugins/debugger.lua}
+
+        ${builtins.readFile ./nvim/plugins/snacks.lua}
+        require("which-key").setup{}
         require("bufferline").setup{}
         require("oil").setup()
         -- require("startup").setup({theme = "evil"})

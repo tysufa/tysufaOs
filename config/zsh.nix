@@ -18,6 +18,7 @@
         zstyle ':fzf-tab:complete:ls:*' fzf-preview 'cat $realpath'
         zstyle ':completion:*' menu no
         eval "$(zoxide init zsh)"
+        eval "$(atuin init zsh)"
     '';
     shellAliases = {
       sv = "sudo nvim";
