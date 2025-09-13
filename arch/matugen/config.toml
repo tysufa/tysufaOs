@@ -1,0 +1,32 @@
+[config.wallpaper]
+command = "hyprctl"
+arguments = ["dispatch -- swww img", "--transition-type", "center"]
+set = true
+
+[templates.hyprland]
+input_path = './templates/hyprland-colors.conf'
+output_path = '~/.config/hypr/colors.conf'
+post_hook = 'hyprctl reload'
+
+[templates.waybar]
+input_path = './templates/colors.css'
+output_path = '~/.config/waybar/colors.css'
+post_hook = 'pkill -SIGUSR2 waybar'
+
+[templates.kitty]
+input_path = './templates/kitty-colors.conf'
+output_path = '~/.config/kitty/colors.conf'
+post_hook = "kill -SIGUSR1 $(pidof kitty)" # reload all kitty windows
+
+[templates.gtk3]
+input_path = './templates/gtk-colors.css'
+output_path = '~/.config/gtk-3.0/colors.css'
+
+[templates.gtk4]
+input_path = './templates/gtk-colors.css'
+output_path = '~/.config/gtk-4.0/colors.css'
+
+[templates.pywalfox]
+input_path = './templates/pywalfox-colors.json'
+output_path = '~/.cache/wal/colors.json'
+post_hook = 'pywalfox update'
