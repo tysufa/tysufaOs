@@ -23,11 +23,9 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 
 	spec = {
-
-		{ import = "lazyvim.plugins" },
-
-		-- import your plugins
+		-- import/override with your plugins
 		{ import = "plugins" },
+
 		-- colorschemes
 		{ "rebelot/kanagawa.nvim" },
 		{ "catppuccin/nvim", name = "catppuccin" },
@@ -59,7 +57,7 @@ require("lazy").setup({
 
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
-	install = { colorscheme = { "habamax" } },
+	-- install = { colorscheme = { "habamax" } },
 	-- automatically check for plugin updates
 	checker = { enabled = true },
 })
