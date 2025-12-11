@@ -63,6 +63,15 @@ return {
 		vim.lsp.enable("hdl_checker")
 		vim.lsp.config("clangd", servers.clangd)
 		vim.lsp.enable("clangd")
+		vim.lsp.enable("qmlls")
+		vim.lsp.config("qmlls", {})
+
+      
+
+
+    
+
+
 		-- require("lspconfig").lua_ls.setup(servers.lua_ls)
 		-- require("lspconfig").clangd.setup(servers.clangd)
 		-- require("lspconfig").pyright.setup(servers.pyright)

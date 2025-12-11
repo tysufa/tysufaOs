@@ -6,7 +6,7 @@ return {
         require("nvim-treesitter.configs").setup({
             auto_install = false,
             ignore_install = { "javascript" },
-            ensure_installed = { "c", "lua", "vim", "cpp"},
+            ensure_installed = { "c", "lua", "vim", "cpp", "qmljs"},
             sync_install = false,
             highlight = { enable = true },
             indent = { enable = true },
