@@ -1,20 +1,12 @@
-// This config is in the KDL format: https://kdl.dev
-// "/-" comments out the following node.
-// Check the wiki for a full description of the configuration:
 // https://yalter.github.io/niri/Configuration:-Introduction
 
-// Input device configuration.
-// Find the full list of options on the wiki:
 // https://yalter.github.io/niri/Configuration:-Input
 input {
     keyboard {
         xkb {
-            // You can set rules, model, layout, variant and options.
             // For more information, see xkeyboard-config(7).
-
-            // For example:
-            // layout "us,ru"
-            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+            layout "us,fr"
+            options "grp:shifts_toggle,caps:escape"
 
             // If this section is empty, niri will fetch xkb settings
             // from org.freedesktop.locale1. You can control these using
@@ -66,13 +58,11 @@ input {
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    // focus-follows-mouse max-scroll-amount="0%"
+    focus-follows-mouse max-scroll-amount="0%"
 }
 
-// You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
 // The built-in laptop monitor is usually called "eDP-1".
-// Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
 /-output "eDP-1" {
@@ -111,7 +101,7 @@ input {
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 16
+    gaps 8
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -159,7 +149,7 @@ layout {
         // off
 
         // How many logical pixels the ring extends out from the windows.
-        width 4
+        width 3
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -167,13 +157,13 @@ layout {
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
         // Color of the ring on the active monitor.
-        active-color "#7fc8ff"
+        active-color "#cba6f7"
 
         // Color of the ring on inactive monitors.
         //
         // The focus ring only draws around the active window, so the only place
         // where you can see its inactive-color is on other monitors.
-        inactive-color "#505050"
+        inactive-color "#1e1e2e"
 
         // You can also use gradients. They take precedence over solid colors.
         // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
@@ -268,14 +258,14 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "quickshell -p ~/tysufaOs/moon/config/quickshell/bar.qml"
+// spawn-at-startup "waybar"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
-// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
+spawn-sh-at-startup "qs -p ~/tysufaOs/moon/config/quickshell/bar.qml"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
-    skip-at-startup
+    // skip-at-startup
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -283,7 +273,7 @@ hotkey-overlay {
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
 // This option will also fix border/focus ring drawing behind some semitransparent windows.
 // After enabling or disabling this, you need to restart the apps for this to take effect.
-// prefer-no-csd
+prefer-no-csd
 
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
@@ -301,7 +291,7 @@ animations {
     // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
+    slowdown 0.85
 }
 
 // Window rules let you adjust behavior for individual windows.
@@ -316,6 +306,11 @@ window-rule {
     // You can get away with just app-id="wezterm" if you want.
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
+}
+
+window-rule {
+    match app-id=r#"zen"#
+    open-maximized true
 }
 
 // Open the Firefox picture-in-picture player as floating by default.
@@ -341,8 +336,8 @@ window-rule {
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    geometry-corner-radius 12
+window-rule {
+    geometry-corner-radius 6
     clip-to-geometry true
 }
 
