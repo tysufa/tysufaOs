@@ -81,16 +81,14 @@ alias gc="git commit -m"
 EDITOR=nvim
 
 # Start ssh-agent if not running
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-  eval "$(ssh-agent -s)"
+if [ -z "$SSH_AUTH_SOCK" ] || ! ssh-add -l &>/dev/null; then
+    eval "$(ssh-agent -s)"
 fi
-
-ssh-add ~/.ssh/id_ed25519 2>/dev/null
 
 # for some reason, this variable is set which break pass, so we remove it to use xclip instead of wl-copy
 # unset WAYLAND_DISPLAY
 
-alias gp="pass -c programmation/github && git push"
+alias gp="ssh-add ~/.ssh/id_ed25519 && git push"
 alias gt="pass -c programmation/github"
 alias glog="git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
 alias ".."="cd .."
