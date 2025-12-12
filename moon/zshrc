@@ -88,7 +88,7 @@ fi
 # for some reason, this variable is set which break pass, so we remove it to use xclip instead of wl-copy
 # unset WAYLAND_DISPLAY
 
-alias gp="ssh-add ~/.ssh/id_ed25519 && git push"
+alias gp="ssh-add -l | grep philemon.penot@gmail.com >/dev/null || ssh-add ~/.ssh/id_ed25519 && git push"
 alias gt="pass -c programmation/github"
 alias glog="git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
 alias ".."="cd .."
