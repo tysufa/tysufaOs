@@ -261,7 +261,7 @@ layout {
 // spawn-at-startup "waybar"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
-spawn-sh-at-startup "qs -p ~/tysufaOs/moon/config/quickshell/bar.qml"
+spawn-sh-at-startup "qs -c noctalia-shell"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.

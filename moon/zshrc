@@ -91,9 +91,9 @@ alias "..."="cd ../.."
 
 alias c='clear'
 
+export PATH="/home/tysufa/.local/bin:$PATH"
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # Shell integrations
-eval "$(~/.local/bin/oh-my-posh init zsh --config ~/tysufaOs/moon/ohmyposh/zen.toml)"
+eval "$(oh-my-posh init zsh --config ~/tysufaOs/moon/ohmyposh/zen.toml)"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-export PATH="/home/tysufa/.local/bin:$PATH"
