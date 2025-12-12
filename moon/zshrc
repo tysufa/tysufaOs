@@ -80,6 +80,13 @@ alias gc="git commit -m"
 
 EDITOR=nvim
 
+# Start ssh-agent if not running
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+  eval "$(ssh-agent -s)"
+fi
+
+ssh-add ~/.ssh/id_ed25519 2>/dev/null
+
 # for some reason, this variable is set which break pass, so we remove it to use xclip instead of wl-copy
 # unset WAYLAND_DISPLAY
 
@@ -97,3 +104,5 @@ export PATH="/home/tysufa/.local/bin:$PATH"
 eval "$(oh-my-posh init zsh --config ~/tysufaOs/moon/ohmyposh/zen.toml)"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+
+task _ids | shuf -n 1| xargs task ls 
