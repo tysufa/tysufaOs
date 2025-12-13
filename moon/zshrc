@@ -103,4 +103,8 @@ eval "$(oh-my-posh init zsh --config ~/tysufaOs/moon/ohmyposh/zen.toml)"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-task _ids | shuf -n 1| xargs task ls 
+export TASK_ID=$(task _ids | shuf -n 1)
+task ls "$TASK_ID"
+
+alias td="task done $TASK_ID"
+
