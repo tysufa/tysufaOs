@@ -38,7 +38,6 @@ require("lazy").setup({
 		{ "williamboman/mason.nvim", opts = {} },
 		{ "wakatime/vim-wakatime", lazy = false },
 		{ "echasnovski/mini.surround", version = false, opts = {} },
-		{ "echasnovski/mini.statusline", version = false, opts = {} },
 		{
 			"norcalli/nvim-colorizer.lua",
 			version = false,
@@ -53,6 +52,11 @@ require("lazy").setup({
 		{ "lewis6991/gitsigns.nvim", opts = {} },
 
 		{ "elkowar/yuck.vim", config = function() end },
+		{
+			"kawre/neotab.nvim",
+			event = "InsertEnter",
+			opts = {},
+		},
 	},
 
 	-- Configure any other settings here. See the documentation for more details.

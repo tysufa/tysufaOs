@@ -28,3 +28,5 @@ uda.duration.label=Duration
 #include solarized-light-256.theme
 #include no-color.theme
 
+sync.backend=git
+sync.git.repo=\/home\/tysufa\/task-sync.git

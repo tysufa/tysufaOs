@@ -7,14 +7,27 @@ workspace "2" {
     open-on-output "eDP-2"
 }
 
-workspace "chat" {
+workspace "media" {
     open-on-output "eDP-2"
 }
 
 window-rule {
-    match app-id="discord"
-    open-on-workspace "chat"
+    match app-id="deezer"
+    open-on-workspace "media"
     open-maximized true
+}
+
+window-rule {
+    match app-id="discord"
+    open-on-workspace "media"
+    open-maximized true
+}
+
+// disable overview in corner
+gestures {
+    hot-corners {
+        off
+    }
 }
 
 // https://yalter.github.io/niri/Configuration:-Input
@@ -176,7 +189,7 @@ layout {
         // off
 
         // How many logical pixels the ring extends out from the windows.
-        width 3
+        width 2
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -392,6 +405,11 @@ binds {
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
     // For example, this is a standard bind to toggle the screen reader (orca).
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
+
+    //noctalia
+    Super+Escape hotkey-overlay-title="Session menu" {spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+    Super+Shift+B hotkey-overlay-title="Toggle Bar" {spawn-sh "qs -c noctalia-shell ipc call bar toggle"; }
+
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
