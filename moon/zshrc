@@ -39,12 +39,22 @@ zinit snippet OMZP::command-not-found
 # Load completions
 autoload -Uz compinit && compinit
 
+#open buffer line in editor
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
 zinit cdreplay -q
 
 # Keybindings
 bindkey -e
 bindkey '^p' history-search-backward
+bindkey '^k' history-search-backward
 bindkey '^n' history-search-forward
+bindkey '^j' history-search-forward
+bindkey ' ' magic-space
+
+
 
 # History
 HISTSIZE=5000
@@ -77,6 +87,8 @@ alias ga="git add"
 alias gaa="git add --all"
 alias gc="git commit -m"
 
+bindkey -s '^Xc' 'git commit -m ""\C-b'
+
 EDITOR=nvim
 
 # Start ssh-agent if not running
@@ -94,6 +106,9 @@ alias ".."="cd .."
 alias "..."="cd ../.."
 
 alias c='clear'
+
+alias -g DN='2>/dev/null'
+alias -g C='| wl-copy'
 
 export PATH="/home/tysufa/.local/bin:$PATH"
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
