@@ -38,7 +38,7 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "diff", "diagnostics" },
-				lualine_c = { "filename", "lsp_status" },
+				lualine_c = { "lsp_status", "filename" },
 				lualine_x = { "filetype" },
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
