@@ -398,6 +398,10 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+D hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+
+    Mod+Shift+V hotkey-overlay-title="Open Vesktop" { spawn-sh "flatpak run dev.vencord.Vesktop"; }
+    Mod+Shift+B hotkey-overlay-title="Open Zen" { spawn-sh "flatpak run app.zen_browser.zen "; }
+
     Mod+SPACE hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
 
@@ -620,7 +624,7 @@ binds {
 
     // Move the focused window between the floating and the tiling layout.
     Mod+V       { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    // Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
