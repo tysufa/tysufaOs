@@ -12,6 +12,12 @@ vim.keymap.set("v", "<leader>x", ":lua<CR>")
 vim.keymap.set("n", "<M-j>", ":cnext<CR>")
 vim.keymap.set("n", "<M-k>", ":cprev<CR>")
 
+---------- allow you to go down, up, beginning and end of line in wraped lines -----------
+vim.keymap.set("n", "j", "gj")
+vim.keymap.set("n", "k", "gk")
+vim.keymap.set("n", "^", "g^")
+vim.keymap.set("n", "$", "g$")
+
 -- show macro recording leave and enter
 vim.api.nvim_create_autocmd("RecordingLeave", {
 	callback = function(ev)
@@ -47,6 +53,11 @@ cmd = "lua vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().vi
 vim.cmd(KeymapCommand("<leader>tt", vim.diagnostic.config().virtual_text, cmd, "virtual text"))
 vim.cmd(KeymapCommand("<leader>tt", vim.diagnostic.config().virtual_text, cmd, "virtual text"))
 
+cmd = "lua vim.opt.wrap = not vim.opt.wrap:get() ; "
+vim.cmd(KeymapCommand("<leader>tw", vim.opt.wrap:get(), cmd, "line wrapping"))
+vim.cmd(KeymapCommand("<leader>tw", vim.opt.wrap:get(), cmd, "line wrapping"))
+
+-- return "lua ToggleFeature('" .. keymap .. "', " .. tostring(toggle_state) .. ", '" .. cmd .. "', '" .. desc .. "')"return "lua ToggleFeature('" .. keymap .. "', " .. tostring(toggle_state) .. ", '" .. cmd .. "', '" .. desc .. "')"return "lua ToggleFeature('" .. keymap .. "', " .. tostring(toggle_state) .. ", '" .. cmd .. "', '" .. desc .. "')"
 -- make a hovering info for diagnostics
 vim.keymap.set("n", "<leader>e", function()
 	local diag = vim.diagnostic.get(0, {

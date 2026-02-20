@@ -12,6 +12,7 @@ vim.opt.smartindent = true
 vim.opt.autoindent = true
 
 vim.opt.wrap = false
+vim.opt.linebreak = true
 
 vim.diagnostic.config({ virtual_lines = false })
 vim.diagnostic.config({ virtual_text = false })

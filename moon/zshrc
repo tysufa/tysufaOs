@@ -111,6 +111,7 @@ alias -g DN='2>/dev/null'
 alias -g C='| wl-copy'
 
 export PATH="/home/tysufa/.local/bin:$PATH"
+export PATH="/home/tysufa/.cargo/bin:$PATH"
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # Shell integrations
 eval "$(oh-my-posh init zsh --config ~/tysufaOs/moon/ohmyposh/zen.toml)"
@@ -122,3 +123,8 @@ task ls "$TASK_ID"
 
 alias td="task done $TASK_ID"
 
+
+# ---------- LUSTRE V4 ------------
+export PATH="$PATH:/usr/share/lustre-tools-4/bin"
+export LUSTRE_INSTALL="/usr/share/lustre-tools-4"
+export _POSIX2_VERSION=199209
