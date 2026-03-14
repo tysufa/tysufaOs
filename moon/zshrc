@@ -87,7 +87,8 @@ alias ga="git add"
 alias gaa="git add --all"
 alias gc="git commit -m"
 
-bindkey -s '^Xc' 'git commit -m ""\C-b'
+bindkey -s '^Xm' 'git commit -m ""\C-b'
+bindkey -s '^Xc' '\C-a echo "\C-e\" | wl-copy'
 
 EDITOR=nvim
 
@@ -122,6 +123,15 @@ export TASK_ID=$(task _ids | shuf -n 1)
 task ls "$TASK_ID"
 
 alias td="task done $TASK_ID"
+
+
+# ---------- Per-session history for Zellij ----------------
+if [[ -n "$ZELLIJ_SESSION_NAME" ]]; then
+    # Create the directory if it doesn't exist
+    mkdir -p "$HOME/.zsh_history_zellij"
+    # Set history file to be specific to the session name
+    HISTFILE="$HOME/.zsh_history_zellij/$ZELLIJ_SESSION_NAME"
+fi
 
 
 # ---------- LUSTRE V4 ------------

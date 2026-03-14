@@ -2,7 +2,6 @@ return {
 	-- Main LSP Configuration
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		{ "williamboman/mason.nvim", opts = {} },
 		-- Allows extra capabilities provided by blink.cmp
 		"saghen/blink.cmp",
 	},
@@ -52,6 +51,13 @@ return {
 					},
 				},
 			},
+			tinymist = {
+				cmd = { "tinymist" },
+				filetypes = { "typst" },
+				settings = {
+					exportPdf = "onType",
+				},
+			},
 		}
 
 		servers.lua_ls.capabilities = vim.tbl_deep_extend("force", {}, capabilities, servers.lua_ls.capabilities or {})
@@ -66,11 +72,8 @@ return {
 		vim.lsp.enable("qmlls")
 		vim.lsp.config("qmlls", {})
 
-      
-
-
-    
-
+		vim.lsp.config("tinymist", servers.tinymist)
+		vim.lsp.enable("tinymist")
 
 		-- require("lspconfig").lua_ls.setup(servers.lua_ls)
 		-- require("lspconfig").clangd.setup(servers.clangd)
