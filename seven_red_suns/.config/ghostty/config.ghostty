@@ -1,0 +1,5 @@
+theme = Matte Black
+background-opacity = 0.85
+background-blur = true
+
+keybind = global:alt+shift+f=toggle_quick_terminal
