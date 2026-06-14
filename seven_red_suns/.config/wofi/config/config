@@ -1,0 +1,16 @@
+show=drun
+width=750
+height=400
+always_parse_args=true
+show_all=false
+term=kitty
+hide_scroll=true
+print_command=true
+insensitive=true
+prompt=
+columns=2
+allow_images=true
+key_down=Ctrl-j,Down,Alt-j
+key_up=Ctrl-k,Up,Alt-k
+key_right=Ctrl-l,Right,Alt-l
+key_left=Ctrl-h,Left,Alt-h
