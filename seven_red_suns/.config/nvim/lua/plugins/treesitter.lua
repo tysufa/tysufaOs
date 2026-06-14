@@ -1,27 +1,30 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function()
-        local ts = require("nvim-treesitter")
-        
-        -- Initialize the plugin base
-        ts.setup()
+	"nvim-treesitter/nvim-treesitter",
+	build = ":TSUpdate",
+	config = function()
+		local ts = require("nvim-treesitter")
 
-        -- Install your language parsers (replaces ensure_installed)
-        ts.install({ "c", "lua", "vim", "cpp", "vimdoc", "query" })
+		-- Initialize the plugin base
+		ts.setup()
 
-        -- Enable highlighting and indentation via standard Neovim autocommands
-        vim.api.nvim_create_autocmd("FileType", {
-            callback = function(event)
-                -- Respect your ignore_install preference
-                if event.match == "javascript" then return end
+		-- Install your language parsers
+		ts.install({ "c", "lua", "vim", "cpp", "vimdoc", "query" })
 
-                -- Turn on native tree-sitter highlighting
-                pcall(vim.treesitter.start, event.buf)
+		-- Enable highlighting and indentation via standard Neovim autocommands
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function(event)
+				-- FIX: Add "markdown" and "vimwiki" to your ignore list here!
+				local ignore_types = { "javascript", "markdown", "vimwiki" }
+				if vim.tbl_contains(ignore_types, event.match) then
+					return
+				end
 
-                -- Turn on tree-sitter indentation
-                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-            end,
-        })
-    end,
+				-- Turn on native tree-sitter highlighting safely
+				pcall(vim.treesitter.start, event.buf)
+
+				-- Turn on tree-sitter indentation
+				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end,
+		})
+	end,
 }

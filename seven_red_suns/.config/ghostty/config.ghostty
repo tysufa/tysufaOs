@@ -3,3 +3,8 @@ background-opacity = 0.85
 background-blur = true
 
 keybind = global:alt+shift+f=toggle_quick_terminal
+
+confirm-close-surface = false
+maximize=true
+
+font-size = 14

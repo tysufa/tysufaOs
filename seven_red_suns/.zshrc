@@ -78,6 +78,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # Alias
 alias cat="bat"
 alias ls="eza --icons=auto"
+alias lss="eza -l --no-permissions --no-filesize --no-user --no-time --icons"
 alias ll="eza -lh --icons=auto --grid --group-directories-first"
 alias lk="command ls -l --color=auto"
 alias la="eza -lah --icons=auto --grid --group-directories-first"

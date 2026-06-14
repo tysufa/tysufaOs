@@ -19,6 +19,9 @@ vim.diagnostic.config({ virtual_text = false })
 
 vim.o.termguicolors = true
 
+-- this is needed to have proper rendering of markdown files with vimwiki
+vim.treesitter.language.register("markdown", "vimwiki")
+
 vim.api.nvim_create_autocmd("VimEnter", {
 	pattern = "*",
 	callback = function()
@@ -103,3 +106,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+-- Force Vimwiki to respect and apply concealment
+vim.g.vimwiki_conceallevel = 2

@@ -1,9 +1,15 @@
 return {
 	"MeanderingProgrammer/render-markdown.nvim",
-	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
-	-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
-	-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-	---@module 'render-markdown'
-	---@type render.md.UserConfig
-	opts = {},
+	-- 1. Tell lazy.nvim to load the plugin for BOTH filetypes
+	ft = { "markdown", "vimwiki" },
+
+	dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
+
+	opts = {
+		-- 2. Tell the plugin itself to run on vimwiki files
+		-- file_types = { "markdown", "vimwiki" },
+		file_types = { "markdown", "vimwiki" },
+
+		-- Your existing configuration options...
+	},
 }
