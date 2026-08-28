@@ -6,7 +6,7 @@ choice=$(gum filter "Update" "Garbage collect" "Exit" --placeholder "Select an a
 
 case "$choice" in
   "Update")
-      sudo nixos-rebuild switch --flake ~/tysufaOs#seven_red_suns
+      sudo nixos-rebuild switch --flake ~/tysufaOs/seven_red_suns#seven_red_suns --impure
       ;;
   "Garbage collect")
       nix-collect-garbage --delete-older-than 7d

@@ -147,7 +147,7 @@ keybinds clear-defaults=true {
     }
     shared {
         bind "Alt c" {
-            Run "bash" "-c" "~/.config/zellij/cheatsheet.sh" {
+            Run "sh" "-ic" "/home/tysufa/scripts/cheatsheet.sh" {
                 floating true
                 close_on_exit true
             }
