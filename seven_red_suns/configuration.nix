@@ -94,7 +94,7 @@
 in {
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
     inputs.noctalia-greeter.nixosModules.default
   ];
 
