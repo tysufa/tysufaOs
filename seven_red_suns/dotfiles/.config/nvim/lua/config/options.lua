@@ -109,3 +109,28 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Force Vimwiki to respect and apply concealment
 vim.g.vimwiki_conceallevel = 2
+
+---- MARKDOWN HEADER SEARCH ----
+local function search_all_vimwiki_headers()
+	-- Récupère automatiquement le chemin de votre premier wiki, sinon utilise le dossier par défaut
+	local wiki_path = (vim.g.vimwiki_list and vim.g.vimwiki_list[1] and vim.g.vimwiki_list[1].path) or "~/vimwiki"
+
+	local pattern = "^#+ "
+
+	require("telescope.builtin").grep_string({
+		prompt_title = "Headers Globaux Vimwiki",
+		search_dirs = { vim.fn.expand(wiki_path) },
+		search = pattern,
+		use_regex = true,
+	})
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "vimwiki", "markdown" },
+	callback = function()
+		vim.keymap.set("n", "<leader>wh", search_all_vimwiki_headers, {
+			buffer = true, -- donne la même priorité que vimwiki à ce keymap
+			desc = "Rechercher un Header dans le Wiki",
+		})
+	end,
+})

@@ -52,9 +52,10 @@ layout {
                 datetime_timezone "Europe/Berlin"
             }
         }
-        pane
-        pane size=1 borderless=true {
-            plugin location="zellij:status-bar"
-        }
+        children
+        // pane focus=true
+        // pane size=1 borderless=true {
+        //     plugin location="zellij:status-bar"
+        // }
     }
 }
