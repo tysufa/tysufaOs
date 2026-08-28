@@ -175,6 +175,13 @@
     alsa-lib
   ];
 
+  xdg.mime = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = "org.pwmt.zathura.desktop";
+    };
+  };
+
   fonts.packages = with pkgs; [
     jetbrains-mono
     nerd-fonts.jetbrains-mono

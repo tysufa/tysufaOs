@@ -1,4 +1,4 @@
-{pkgs}: {
+{...}: {
   # nvidia drivers
   services.xserver.videoDrivers = ["nvidia"];
 

@@ -126,6 +126,7 @@ in {
     starsector
 
     # -- standard desktop apps --
+    zathura
     (pkgs.gimp-with-plugins.override {
       plugins = with pkgs.gimpPlugins; [
         resynthesizer
