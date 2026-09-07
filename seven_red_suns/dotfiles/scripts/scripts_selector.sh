@@ -12,7 +12,7 @@ case "$choice" in
       nix-collect-garbage --delete-older-than 7d
       ;;
   "Backup")
-      sh ~/scripts/backup.sh
+      restic --repo ~/Backup/restic backup ~/.config/zen ~/vimwiki/
       ;;
   "Exit"|*)
       exit 0
