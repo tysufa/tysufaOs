@@ -53,6 +53,8 @@
 
   services.ratbagd.enable = true; # to make piper work
 
+  services.tailscale.enable = true;
+
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;

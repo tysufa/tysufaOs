@@ -126,6 +126,7 @@ in {
     starsector
 
     # -- standard desktop apps --
+    zotero
     zathura
     (pkgs.gimp-with-plugins.override {
       plugins = with pkgs.gimpPlugins; [
@@ -156,7 +157,7 @@ in {
     thunderbird
     kdePackages.kdeconnect-kde
     discord
-    brave
+    brave-origin
     easyeffects
     piper
 
@@ -168,10 +169,10 @@ in {
     android-tools # for graphene os installation
 
     # ---- cli/tuis and general apps for development ----
-    pkgs.nur.repos.charmbracelet.crush
+
+    restic
     gum
     yazi
-    zinit
 
     pkgs.uv
     (pkgs.writeShellScriptBin "parllama" ''
@@ -184,15 +185,10 @@ in {
       exec ${pkgs.uv}/bin/uvx --python 3.12 --with "textual<0.27.0" --from aitui ai "$@"
     '')
 
-    aichat
-
-    ollama-cuda
-    opencode
     playerctl
     ddcutil # brightness control
     elogind # allow a popup to show when changing the theme of greeter with noctalia
     wl-clipboard
-    typst
     sshfs
     waypipe
     fd
@@ -204,17 +200,25 @@ in {
     croc
     tldr
     ripgrep
-    zellij
     bat
     oh-my-posh
     fzf
     zoxide
     eza
+    killall
+
+    # ---- Programming ----
+    go
+    gopls # lsp for go
+    nodejs
+    zellij
     gcc
     rustc
     cargo
     git
-    zotero
+    typst
+    helix
+    lazygit
     (neovim.override {
       withPython3 = true;
       extraPython3Packages = ps:
@@ -224,13 +228,17 @@ in {
           packaging
         ];
     })
-    helix
-    lazygit
-    killall
 
     os-prober
 
+    # ---- AI ----
+    pkgs.nur.repos.charmbracelet.crush
+    aichat
+    ollama-cuda
+    opencode
+
     # libraries
+    hyprpolkitagent
     libnotify
   ];
 

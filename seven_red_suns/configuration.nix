@@ -112,6 +112,10 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  security.pam.services.hyprland.kwallet.enable = true;
+
+
+
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
@@ -174,6 +178,15 @@
     # Audio support
     alsa-lib
   ];
+
+  environment.sessionVariables = {
+    NPM_CONFIG_PREFIX = "$HOME/.npm-global";
+  };
+
+  # Ensure the global binaries are available in your PATH
+  environment.interactiveShellInit = ''
+    export PATH="$HOME/.npm-global/bin:$PATH"
+  '';
 
   xdg.mime = {
     enable = true;
