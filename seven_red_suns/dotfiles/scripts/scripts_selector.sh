@@ -2,7 +2,7 @@
 
 # Define the script names and their corresponding actions
 
-choice=$(gum filter "Update" "Garbage collect" "Exit" --placeholder "Select an action")
+choice=$(gum filter "Update" "Garbage collect" "Backup" "Exit" --placeholder "Select an action")
 
 case "$choice" in
   "Update")
@@ -10,6 +10,9 @@ case "$choice" in
       ;;
   "Garbage collect")
       nix-collect-garbage --delete-older-than 7d
+      ;;
+  "Backup")
+      sh ~/scripts/backup.sh
       ;;
   "Exit"|*)
       exit 0
