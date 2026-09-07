@@ -677,3 +677,4 @@ show_startup_tips false
 //   - "off" (do not forward notifications to the host terminal)
 // 
 // host_notification_protocol "auto"
+host_notification_protocol "off"
