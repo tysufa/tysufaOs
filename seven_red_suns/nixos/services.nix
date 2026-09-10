@@ -25,8 +25,11 @@
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+    extraLayouts.us_qwerty-fr = {
+      description = "US QWERTY with French accents";
+      languages = [ "fre" "eng" ];
+      symbolsFile = ./us_qwerty-fr; # relative path to the downloaded file
+    };
   };
 
   # Enable CUPS to print documents.
@@ -75,16 +78,13 @@
       };
       devices = {
         "server" = {id = "BIGYUV4-GP4J7MV-XXXD3NU-L6TMQR3-TINI6J4-YRQQFHQ-A3QEJUI-TOOF2Q4";};
+        "Pixel8_graphene" = {id = "GMC7GA2-7CTSRK2-QRT776P-JCGWBOK-TPIVV77-7JL32EX-2OXTKF6-OXNIOAJ";};
       };
       folders = {
-        "Test" = {
-          path = "/home/tysufa/Documents/dossier_test_syncthing";
-          devices = ["server"];
-          ignorePerms = false;
-        };
-        "zen_browser" = {
-          path = "/home/tysufa/.config/zen/";
-          devices = ["server"];
+        "Rusher" = {
+          path = "/home/tysufa/Projects/Rusher";
+          devices = ["Pixel8_graphene"];
+          ignorePatterns = ["!tasks.txt" "*"] ;
         };
       };
     };
