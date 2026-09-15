@@ -1,0 +1,8 @@
+keys:
+  - &pebbles_server age188rcngaeymzfyclte0ft83f9ltf4x5nkdkup4jhapllgkae7veeq2rd2ya
+
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+      - age:
+          - *pebbles_server
