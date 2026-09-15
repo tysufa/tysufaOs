@@ -51,6 +51,17 @@ return {
 					},
 				},
 			},
+			gopls = {
+				settings = {
+					gopls = {
+						analyses = {
+							unusedparams = true,
+						},
+						staticcheck = true,
+						gofumpt = true,
+					},
+				},
+			},
 		}
 
 		-- 3. Loop through configs, load options, and enable them properly

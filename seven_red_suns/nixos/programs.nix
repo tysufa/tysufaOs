@@ -125,7 +125,10 @@ in {
     protontricks # needed to install bepinex, which is needed to mod tunic
     starsector
 
-    # -- standard desktop apps --
+    # -- keyboard --
+    qwerty-fr
+
+    # -- standard graphical desktop apps --
     zotero
     zathura
     (pkgs.gimp-with-plugins.override {
@@ -170,6 +173,7 @@ in {
 
     # ---- cli/tuis and general apps for development ----
 
+    starship
     restic
     gum
     yazi

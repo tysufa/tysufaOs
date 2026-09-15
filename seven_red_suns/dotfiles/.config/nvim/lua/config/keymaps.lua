@@ -18,6 +18,9 @@ vim.keymap.set("n", "k", "gk")
 vim.keymap.set("n", "^", "g^")
 vim.keymap.set("n", "$", "g$")
 
+---- Format with conform.nvim ----
+vim.keymap.set("n", "<leader>f", ":lua require('conform').format()<CR>")
+
 -- show macro recording leave and enter
 vim.api.nvim_create_autocmd("RecordingLeave", {
 	callback = function(ev)

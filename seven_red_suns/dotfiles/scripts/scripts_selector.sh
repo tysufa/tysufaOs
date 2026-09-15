@@ -13,6 +13,7 @@ case "$choice" in
       ;;
   "Backup")
       restic --repo ~/Backup/restic backup ~/.config/zen ~/vimwiki/
+      restic -r sftp:tysufa@192.168.1.238:/mnt/storage/Backups/restic copy --from-repo ~/Backup/restic
       ;;
   "Exit"|*)
       exit 0

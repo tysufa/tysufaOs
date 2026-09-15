@@ -54,6 +54,11 @@ zinit ice depth=1
 
 export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
+# allow system clipboard for vi mode
+ZVM_SYSTEM_CLIPBOARD_ENABLED=true
+
+ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+
 # Add in snippets
 # zinit snippet OMZP::sudo
 # zinit snippet OMZP::archlinux
@@ -178,7 +183,8 @@ export PATH="/home/tysufa/.local/bin:$PATH"
 export PATH="/home/tysufa/.cargo/bin:$PATH"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # Shell integrations
-eval "$(oh-my-posh init zsh --config ~/tysufaOs/moon/ohmyposh/zen.toml)"
+# eval "$(oh-my-posh init zsh --config ~/tysufaOs/moon/ohmyposh/zen.toml)"
+eval "$(starship init zsh)"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
@@ -199,3 +205,5 @@ fi
 
 # good fastfetch presets : 31, 28, 17, 6 fastfetch -c examples/17
 fastfetch
+
+
