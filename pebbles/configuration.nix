@@ -2,12 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./storage.nix
+      inputs.sops-nix.nixosModules.sops
     ];
 
   # Bootloader.
@@ -17,7 +19,9 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  boot.supportedFilesystems = [ "btrfs" ];
+
+  networking.hostName = "pebbles-server"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -69,14 +73,23 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
+  environment.enableAllTerminfo = true;
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-
     zotero
+
+    cloudflared #cloudflare tunnel
+
+    restic
+    btrfs-progs
+    ripgrep
+    waypipe
     neovim
     git
   ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -86,13 +99,29 @@
   #   enableSSHSupport = true;
   # };
 
+  programs.zsh.enable = true;
+
+  
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.openssh.settings.X11Forwarding = true;
+
+  # Enable Caddy web server
+  services.caddy = {
+    enable = true;
+    virtualHosts."http://" = {
+      extraConfig = ''
+        root * /var/www/portfolio
+        file_server
+      '';
+    };
+  };
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

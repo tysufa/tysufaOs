@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	end,
 })
 
--- Set to true if you have a Nerd Font installed and selected in the terminal-- Set to true if you have a Nerd Font installed and selected in the terminal
+-- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
@@ -45,15 +45,22 @@ vim.opt.mouse = "a"
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
--- vim.schedule(function()
--- 	vim.opt.clipboard = "unnamedplus"
--- end)
+-- Synchronize the default register ("") with the system clipboard registers ("+" and "*")
+vim.opt.clipboard = 'unnamedplus'
 
-vim.opt.clipboard = "unnamedplus"
+-- Force Neovim to emit OSC 52 escape sequences for yanks
+local osc52 = require('vim.ui.clipboard.osc52')
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = osc52.copy('+'),
+    ['*'] = osc52.copy('*'),
+  },
+  paste = {
+    ['+'] = osc52.paste('+'),
+    ['*'] = osc52.paste('*'),
+  },
+}
 
 -- Enable break indent
 vim.opt.breakindent = true
