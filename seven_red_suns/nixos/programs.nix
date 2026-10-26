@@ -75,28 +75,30 @@ in {
 
   programs.firefox.enable = true;
 
-  programs.hyprland.enable = true;
+  # programs.hyprland.enable = true;
+  programs.niri.enable = true;
+
+  # transforms tablet into graphical tablet
+  # programs.weylus = {
+  #   enable = true;
+  #   openFirewall = true;
+  #   users = [ "tysufa" ]; # Replaces your username; grants uinput permissions for S Pen pressure
+  # };
 
   programs.appimage.enable = true;
   programs.nix-ld.enable = true;
 
-  services.ollama = {
-    enable = true;
-    package = pkgs.ollama-cuda;
-    loadModels = ["qwen2.5:7b" "gemma4:e4b"];
-  };
-
   environment.systemPackages = with pkgs; [
     # shells
-    inputs.caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
     noctalia
 
     # for Hyprland
     hyprshell
 
     # hardware/périphériques
-    linuxPackages.openrazer
+    # linuxPackages.openrazer
 
     # -- nvim packages --
     wakatime-cli
@@ -111,7 +113,7 @@ in {
 
     # -- gaming packages --
     protonup-qt
-    pkgs-stable.lutris
+    lutris
     # bottles
     heroic
     btop
@@ -129,7 +131,11 @@ in {
     qwerty-fr
 
     # -- standard graphical desktop apps --
-    zotero
+    obsidian
+    gnome-boxes
+    calibre
+    mpv
+    pkgs-stable.zotero
     zathura
     (pkgs.gimp-with-plugins.override {
       plugins = with pkgs.gimpPlugins; [
@@ -137,57 +143,42 @@ in {
       ];
     })
     kdePackages.qt6ct
+    kdePackages.partitionmanager
+    krita
     nwg-look
     adw-gtk3
 
     nautilus
-    vicinae
+    vicinae # search menu
     proton-vpn
     qbittorrent
-    gnome-boxes
     zen-sine
     # inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     deezer-desktop
     vesktop
     kitty
-    ghostty
-    blanket
+    blanket # rain (and other) noises app 
     libreoffice
-    eloquent
-    switcheroo
+    # eloquent # local text to speech app
+    switcheroo # TODO : find what it does
     localsend
     signal-desktop
     thunderbird
     kdePackages.kdeconnect-kde
     discord
     brave-origin
-    easyeffects
-    piper
-
-    seafile-client
-    seadrive-gui
-
+    easyeffects # manage input and output sound (adding effects, removing background sounds, ...)
     wtype # reliable text input for handy
 
-    android-tools # for graphene os installation
+    # android-tools # for graphene os installation
 
     # ---- cli/tuis and general apps for development ----
-
-    starship
-    restic
-    gum
-    yazi
-
-    pkgs.uv
-    (pkgs.writeShellScriptBin "parllama" ''
-      exec ${pkgs.uv}/bin/uvx parllama "$@"
-    '')
-    (pkgs.writeShellScriptBin "elia" ''
-      exec ${pkgs.uv}/bin/uvx --python 3.12 --from elia-chat elia "$@"
-    '')
-    (pkgs.writeShellScriptBin "aitui" ''
-      exec ${pkgs.uv}/bin/uvx --python 3.12 --with "textual<0.27.0" --from aitui ai "$@"
-    '')
+    ghgrab # download github files
+    glow # markdown viewer
+    starship # shell prompt
+    restic # backup tool
+    gum # tool to make pretty scripts
+    yazi # terminal filepicker
 
     playerctl
     ddcutil # brightness control
@@ -195,14 +186,13 @@ in {
     wl-clipboard
     sshfs
     waypipe
-    fd
+    fd # better find command
     imagemagick # to show images in neovim
     stow
     wofi
-    taskwarrior2
     fastfetch
     croc
-    tldr
+    tealdeer
     ripgrep
     bat
     oh-my-posh
@@ -214,14 +204,10 @@ in {
     # ---- Programming ----
     go
     gopls # lsp for go
-    nodejs
     zellij
     gcc
-    rustc
-    cargo
     git
     typst
-    helix
     lazygit
     (neovim.override {
       withPython3 = true;
@@ -235,33 +221,28 @@ in {
 
     os-prober
 
-    # ---- AI ----
-    pkgs.nur.repos.charmbracelet.crush
-    aichat
-    ollama-cuda
-    opencode
-
     # libraries
+    virglrenderer # allows gpu passthrough with qemu vm's
     hyprpolkitagent
     libnotify
   ];
 
-  programs.noctalia-greeter = {
-    enable = true;
-
-    # Optional configuration
-    greeter-args = "";
-    # Full declarative greeter.toml (overwritten on each activation).
-    # See examples/greeter.toml for every key (appearance.palette, output, …).
-    settings = {
-      cursor = {
-        theme = "Bibata-Modern-Ice";
-        size = 24;
-        path = "${pkgs.bibata-cursors}/share/icons";
-      };
-      keyboard = {
-        layout = "us";
-      };
-    };
-  };
+  # programs.noctalia-greeter = {
+  #   enable = true;
+  #
+  #   # Optional configuration
+  #   greeter-args = "";
+  #   # Full declarative greeter.toml (overwritten on each activation).
+  #   # See examples/greeter.toml for every key (appearance.palette, output, …).
+  #   settings = {
+  #     cursor = {
+  #       theme = "Bibata-Modern-Ice";
+  #       size = 24;
+  #       path = "${pkgs.bibata-cursors}/share/icons";
+  #     };
+  #     keyboard = {
+  #       layout = "us";
+  #     };
+  #   };
+  # };
 }
