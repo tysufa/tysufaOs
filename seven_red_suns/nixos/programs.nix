@@ -173,6 +173,9 @@ in {
     # android-tools # for graphene os installation
 
     # ---- cli/tuis and general apps for development ----
+    inputs.niri-scratchpad.packages.${pkgs.system}.default # cli to enable scratchpads on niri
+    jq # small utility to parse json data
+    ddcutil # control brightness via hdmi (for external monitors)
     brightnessctl
     ghgrab # download github files
     glow # markdown viewer
