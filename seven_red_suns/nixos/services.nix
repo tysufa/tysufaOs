@@ -19,9 +19,17 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
+  services.flatpak.enable = true;
+
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = false;
   services.desktopManager.plasma6.enable = true;
+
+  services.displayManager.noctalia-greeter.enable = true;
+  services.displayManager.noctalia-greeter.settings = {
+    session.default = "plasma";
+  };
+  services.displayManager.defaultSession = "plasma"; # this is necessary because of conflicting declarations of this value by niri and plasma
 
   # Configure keymap in X11
   services.xserver.xkb = {
