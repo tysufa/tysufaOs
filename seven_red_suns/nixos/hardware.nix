@@ -21,4 +21,6 @@
   hardware.xone.enable = true;
 
   hardware.bluetooth.enable = true;
+
+  hardware.i2c.enable = true;
 }
