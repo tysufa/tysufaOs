@@ -173,6 +173,7 @@ in {
     # android-tools # for graphene os installation
 
     # ---- cli/tuis and general apps for development ----
+    brightnessctl
     ghgrab # download github files
     glow # markdown viewer
     starship # shell prompt
@@ -221,7 +222,8 @@ in {
 
     os-prober
 
-    # libraries
+    # libraries and api's
+    xwayland-satellite
     virglrenderer # allows gpu passthrough with qemu vm's
     hyprpolkitagent
     libnotify
