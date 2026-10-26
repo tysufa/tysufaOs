@@ -27,22 +27,8 @@ if [[ -n "$KITTY_INSTALLATION_DIR" ]]; then
   unfunction kitty-integration
 fi
 
-# Source/Load zinit
-source "${ZINIT_HOME}/zinit.zsh"
 
-# zinit wait lucid for \
-#     atload"zicompinit; zicdreplay" \
-#     zsh-users/zsh-completions \
-#     zsh-users/zsh-autosuggestions
-#
-# zinit wait lucid for \
-#     Aloxaf/fzf-tab
-#
-# zinit wait lucid for \
-#     zsh-users/zsh-syntax-highlighting
-#
-# zinit wait"0a" lucid depth"1" for \
-#     jeffreytse/zsh-vi-mode
+source "${ZINIT_HOME}/zinit.zsh"
 
 # Add in zsh plugins
 zinit light jeffreytse/zsh-vi-mode
@@ -51,6 +37,7 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit ice depth=1
+
 
 export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
@@ -64,8 +51,6 @@ ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 # zinit snippet OMZP::archlinux
 # zinit snippet OMZP::command-not-found
 
-# Load completions
-autoload -Uz compinit && compinit -C
 
 #open buffer line in editor
 # autoload -Uz edit-command-line
@@ -82,8 +67,6 @@ bindkey '^n' history-search-forward
 bindkey '^j' history-search-forward
 bindkey ' ' magic-space
 
-
-
 # History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
@@ -99,9 +82,14 @@ setopt hist_find_no_dups
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
+zstyle ':completion:*' insert-ambiguous false
+setopt MENU_COMPLETE
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' accept-line enter
+zstyle ':fzf-tab:complete:ls:*' accept-line enter
 
+# Load completions
+autoload -Uz compinit && compinit -C
 
 # Alias
 alias cat="bat"
