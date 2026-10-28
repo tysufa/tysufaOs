@@ -2,7 +2,6 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  config,
   pkgs,
   inputs,
   lib,
@@ -14,7 +13,7 @@
     ./nixos/programs.nix
     ./nixos/services.nix
     ./nixos/hardware.nix
-    inputs.noctalia-greeter.nixosModules.default
+    # inputs.noctalia-greeter.nixosModules.default
   ];
 
   # Bootloader.
@@ -42,7 +41,6 @@
   # boot.loader.timeout = 0;
 
   boot = {
-    initrd.systemd.enable = true;
 
     plymouth = {
       enable = true;
@@ -57,7 +55,6 @@
 
     # Enable "Silent boot"
     consoleLogLevel = 3;
-    initrd.verbose = false;
     kernelParams = [
       "quiet"
       "udev.log_level=3"
@@ -103,7 +100,7 @@
 
   # ---- GENERAL SYSTEM OPTIONS ----
   networking.hostName = "seven_red_suns"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -111,6 +108,11 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  # networking.networkmanager.wifi.backend = "iwd";
+
+  environment.etc."wpa_supplicant/wpa_supplicant.conf".text = ''
+  openssl_ciphers=DEFAULT@SECLEVEL=1
+'';
 
   security.pam.services.hyprland.kwallet.enable = true;
 
@@ -134,16 +136,14 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
+  virtualisation.libvirtd.enable = true; # gnome boxes
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tysufa = {
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "tysufa";
-    extraGroups = ["networkmanager" "wheel" "adbusers" "kvm"]; #adbusers and kvm are for installing graphene os
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
-    ];
+    extraGroups = ["networkmanager" "wheel" "kvm" "libvirtd" "i2c" ]; #adbusers and kvm are for installing graphene os, i2c is for ddcutil
   };
   users.extraUsers.tysufa = {
   };
@@ -221,7 +221,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
