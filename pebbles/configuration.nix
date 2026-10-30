@@ -62,8 +62,9 @@
   users.users.tysufa = {
     isNormalUser = true;
     description = "tysufa";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [];
+    shell = pkgs.zsh;
   };
 
   # Allow unfree packages
@@ -74,11 +75,21 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
+  virtualisation.docker.enable = true;
+
   environment.enableAllTerminfo = true;
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    zotero
+    # zotero
+
+    fzf
+    stow
+    fastfetch
+    zoxide
+    starship
+    eza
+    zsh
 
     cloudflared #cloudflare tunnel
 
@@ -110,15 +121,15 @@
   services.openssh.settings.X11Forwarding = true;
 
   # Enable Caddy web server
-  services.caddy = {
-    enable = true;
-    virtualHosts."http://" = {
-      extraConfig = ''
-        root * /var/www/portfolio
-        file_server
-      '';
-    };
-  };
+  # services.caddy = {
+  #   enable = true;
+  #   virtualHosts."http://" = {
+  #     extraConfig = ''
+  #       root * /var/www/portfolio
+  #       file_server
+  #     '';
+  #   };
+  # };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 80 443 ];
