@@ -623,3 +623,5 @@ binds {
 }
 
 environment
+
+include "noctalia.kdl"
