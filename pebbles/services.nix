@@ -19,33 +19,28 @@
       settings = {
         address = "0.0.0.0"; # Listen on all network interfaces
         port = 8083;
-        directory = "/mnt/storage/zotero";
-        permissions = "CRUD"; # Allow Create, Read, Update, Delete
-        
+
+        permissions = "CRUD";
+
+        cors = {
+          enabled = true;
+          credentials = true;
+        };
+
         users = [
           {
             username = "{env}ZOTERO_WEBDAV_USER";
             password = "{env}ZOTERO_WEBDAV_PASSWD";
+            directory = "/mnt/storage/zotero";
+            permissions = "CRUD";
+          }
+          {
+            username = "{env}OBSIDIAN_WEBDAV_USER";
+            password = "{env}OBSIDIAN_WEBDAV_PASSWD";
+            directory = "/mnt/storage/obsidian";
+            permissions = "CRUD";
           }
         ];
-      };
-    };
-
-    samba = {
-      enable = true;
-      openFirewall = true;
-      settings = {
-        global = {
-          "workgroup" = "WORKGROUP";
-          "server string" = "nixos-nas";
-          "security" = "user";
-        };
-        "SharedFiles" = {
-          "path" = "/mnt/storage/shared-files";
-          "browseable" = "yes";
-          "read only" = "no";
-          "guest ok" = "no";
-        };
       };
     };
 
@@ -53,7 +48,7 @@
       enable = true;
       listenPort = 8082;
 
-      allowedHosts = "tysufa.com,192.168.1.238:8082";
+      allowedHosts = "homepage.tysufa.com,192.168.1.238:8082";
       
       services = [
         {
@@ -74,8 +69,15 @@
             {
               "Audiobookshelf" = {
                 icon = "audiobookshelf";
-                href = "http://192.168.1.238:8084";
-                siteMonitor = "http://192.168.1.238:8084";
+                href = "https://audiobookshelf.tysufa.com";
+                siteMonitor = "https://audiobookshelf.tysufa.com";
+              };
+            }
+            {
+              "Kavita" = {
+                icon = "kavita";
+                href = "https://kavita.tysufa.com";
+                siteMonitor = "https://kavita.tysufa.com";
               };
             }
             {
@@ -83,6 +85,27 @@
                 icon = "jellyfin";
                 href = "http://192.168.1.238:8096";
                 siteMonitor = "http://192.168.1.238:8096";
+              };
+            }
+            {
+              "CopyParty" = {
+                icon = "copyparty";
+                href = "https://copyparty.tysufa.com";
+                siteMonitor = "https://copyparty.tysufa.com";
+              };
+            }
+            {
+              "Fireshare" = {
+                icon = "fireshare";
+                href = "https://fireshare.tysufa.com";
+                siteMonitor = "https://fireshare.tysufa.com";
+              };
+            }
+            {
+              "Immich" = {
+                icon = "immich";
+                href = "https://immich.tysufa.com";
+                siteMonitor = "https://immich.tysufa.com";
               };
             }
           ];
@@ -109,6 +132,16 @@
       enable = true;
       openFirewall = true;
     };
+
+    kavita = {
+      enable = true;
+      dataDir = "/mnt/storage/kavita";
+      tokenKeyFile = config.sops.secrets."kavita-token-key".path;
+      settings = {
+        Port = 5000;
+      };
+    };
+
   };
 
   fileSystems."/var/lib/audiobookshelf" = {
@@ -118,6 +151,6 @@
     depends = [ "/mnt/storage" ]; # Ensures the big drive mounts first
   };
 
-  networking.firewall.allowedTCPPorts = [ 9090 8082 8083 8084 ];
+  networking.firewall.allowedTCPPorts = [ 9090 8082 8083 8084 3923 3910];
 
 }

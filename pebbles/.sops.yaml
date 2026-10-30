@@ -1,5 +1,5 @@
 keys:
-  - &pebbles_server age188rcngaeymzfyclte0ft83f9ltf4x5nkdkup4jhapllgkae7veeq2rd2ya
+  - &pebbles_server age128tyagaw2cdq2w86dtq3g3cpjryewqzq78yx8jas50cjgpgz6vuqjqrwth
 
 creation_rules:
   - path_regex: secrets/secrets.yaml$
