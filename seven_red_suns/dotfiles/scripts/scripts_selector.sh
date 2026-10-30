@@ -9,7 +9,7 @@ case "$choice" in
       sudo nixos-rebuild switch --flake ~/tysufaOs/seven_red_suns#seven_red_suns --impure
       ;;
   "Garbage collect")
-      nix-collect-garbage --delete-older-than 7d
+      sudo nix-collect-garbage --delete-older-than 7d
       ;;
   "Backup")
       restic --repo ~/Backup/restic backup ~/.config/zen ~/vimwiki/
