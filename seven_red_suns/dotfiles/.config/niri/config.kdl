@@ -280,12 +280,22 @@ window-rule {
 }
 
 
+// Open discord in floating mod and taking 95% of the screen
 window-rule {
   match app-id="discord"
   open-floating true
   default-column-width { proportion 0.95; }
   default-window-height { proportion 0.95; }
   focus-ring { width 1; }
+}
+
+// Open matching apps in a maximized state (zen, obsidian)
+window-rule {
+  match app-id="zen"
+  match app-id="md.obsidian.Obsidian"
+  open-maximized true
+  // default-column-width { proportion 0.95; }
+  // default-window-height { proportion 0.95; }
 }
 
 window-rule {
