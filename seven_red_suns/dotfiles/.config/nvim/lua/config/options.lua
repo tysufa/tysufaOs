@@ -57,7 +57,7 @@ vim.g.clipboard = {
     ['*'] = osc52.copy('*'),
   },
   paste = {
-    ['+'] = osc52.paste('+'),
+    -- ['+'] = osc52.paste('+'),
     ['*'] = osc52.paste('*'),
   },
 }
@@ -105,6 +105,15 @@ vim.opt.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.opt.confirm = true
+
+---- Loading folds when exiting and entering buffers ----
+
+vim.opt.viewoptions = { "curdir", "cursor", "folds"}
+
+vim.api.nvim_create_autocmd("BufWinLeave", { pattern = "?*", command = "silent! mkview" })
+vim.api.nvim_create_autocmd("BufWinEnter", { pattern = "?*", command = "silent! loadview" })
+
+---- Highlight text when yanking ----
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",

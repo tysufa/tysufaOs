@@ -37,7 +37,7 @@ return {
 		quickfile = { enabled = true },
 		scope = { enabled = true },
 		scroll = { enabled = true },
-		statuscolumn = { enabled = true },
+		statuscolumn = { enabled = false }, -- disabled to have ufo folding render properly
 		words = { enabled = true },
 	},
 

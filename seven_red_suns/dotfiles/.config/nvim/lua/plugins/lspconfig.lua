@@ -9,6 +9,13 @@ return {
 		-- 1. Grab completion capabilities from blink.cmp
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+		-- Add nvim-ufo folding capabilities
+		capabilities.textDocument = capabilities.textDocument or {}
+		capabilities.textDocument.foldingRange = {
+			dynamicRegistration = false,
+			lineFoldingOnly = true,
+		}
+
 		-- Set global defaults for ALL configurations so you don't have to map capabilities manually
 		vim.lsp.config("*", {
 			capabilities = capabilities,
