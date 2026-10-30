@@ -122,6 +122,7 @@ in {
     owmods-gui # outer wilds mod manager
     (olympus.override {celesteWrapper = "steam-run";})
     lumafly # hollow knight mod manager
+    cogfly # silksong mod manage
     poptracker
     r2modman # mod manager, I use it for unfair flips, but it could be used for risk of rain apparently
     protontricks # needed to install bepinex, which is needed to mod tunic
