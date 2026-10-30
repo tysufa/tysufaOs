@@ -61,8 +61,9 @@
 
   #inline("Ports")
 
-  homepage : 8082 / http://192.168.1.238:8082 / https://tysufa.com
-  immich : 2283 / http://192.168.1.238:2283
+  - homepage : 8082 | http://192.168.1.238:8082 | https://tysufa.com
+  - immich : 2283 | http://192.168.1.238:2283
+  - zotero/webdav : 8083 | http://100.79.190.77/ | https://zotero.tysufa.com
   
 
 ]
@@ -88,7 +89,30 @@
 
 = Sops
 #concept-block[
-  Les secrets sont ecris dans le dossier accessible uniquement pour root /run/secrets
+  The secrets are written in the folder only accessible by root `/run/secrets`
+
+  Whenever you want to add a secret using sops, there are 3 steps :
+    + Add it into sops.nix
+      ```nix
+        secrets."nomdossier/nomfichier" = {
+          owner = "root";
+          group = "root";
+          mode = "0400";
+        };
+      ```
+      You can also leave the { } empty, to get the same result (probably) by default
+
+    + Edit the secrets.yaml file with this command
+      ```bash
+      nix-shell -p sops --run "EDITOR=nvim sops secrets/secrets.yaml"
+      ```
+
+    + Finally you can access the secret in the nix config 
+      ```nix
+        passwordFile = config.sops.secrets."nomdossier/nomfichier".path;
+      ```
+
+
 ]
 
 = Backups
@@ -120,6 +144,29 @@ services.udev.extraRules = ''
   there is a restic service that saves daily :
   - zotero
   - immich
-
 ]
+
+
+= Services
+#concept-block[
+
+  #inline("immich")
+
+  #inline("audiobookshelf")
+
+  #inline("homepage")
+
+  #inline("copyparty")
+]
+
+#concept-block[
+  #inline("zotero")
+
+  Zotero is managed via an online account, but the files are stored in a webdav
+
+  The credentials for the webdav are stored in sops and then used as environment variables (`ZOTERO_WEBDAV_USER` and `ZOTERO_WEBDAV_PASSWD`)
+
+  You can access it via port 8083, this webdav is mapping `/mnt/storage/zotero`
+]
+
 

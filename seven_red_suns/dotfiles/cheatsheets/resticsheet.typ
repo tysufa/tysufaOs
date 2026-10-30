@@ -91,6 +91,17 @@
 
   #inline("Restore")
 
+  to do a standard restore :
+  ```bash
+  restic -r /srv/restic-repo restore 79766175 --target /tmp/restore
+  ```
+  On peut rajouter `--host` pour sélectionner la snapshot d'un host en particulier, par exemple seven_red_suns ou pebbles
+  
+  To restore only a single file/folder :
+  ```bash
+  restic -r /srv/restic-repo restore 79766175 --target /tmp/restore --include /home/user/veryimportantfolder
+  ```
+
   #inline("Clean up")
 
   To clean up and keep only the most recent snapshot of each unique bakcup :
