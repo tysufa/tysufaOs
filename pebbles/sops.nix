@@ -6,7 +6,7 @@
 
   sops = {
     # Path to your age master key
-    age.keyFile = "/home/tysufa/.config/sops/age/keys.txt";
+    age.keyFile = "/home/tysufa/.keys/age/keys.txt";
     defaultSopsFile = ./secrets/secrets.yaml; # Relative path to your encrypted file
     defaultSopsFormat = "yaml";
 
@@ -17,12 +17,18 @@
       mode = "0400";
     };
 
+    secrets."cloudflare-env" = { };
+
     secrets."zotero/password" = {};
     secrets."zotero/username" = {};
+    secrets."obsidian/password" = {};
+    secrets."obsidian/username" = {};
 
     templates."webdav-env".content = ''
       ZOTERO_WEBDAV_USER="${config.sops.placeholder."zotero/username"}"
       ZOTERO_WEBDAV_PASSWD="${config.sops.placeholder."zotero/password"}"
+      OBSIDIAN_WEBDAV_USER="${config.sops.placeholder."obsidian/username"}"
+      OBSIDIAN_WEBDAV_PASSWD="${config.sops.placeholder."obsidian/password"}"
     '';
 
     secrets."restic/password" = {
@@ -35,6 +41,15 @@
       group = "root";
       mode = "0400";
     };
+    secrets."copyparty/tysufa" = {
+      owner = "copyparty";
+      group = "copyparty";
+      mode = "0400";
+    };
+    secrets."fireshare-env" = {};
+
+    secrets."kavita-token-key" = {};
+
   };
 }
 
