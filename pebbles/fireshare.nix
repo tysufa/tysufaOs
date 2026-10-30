@@ -5,16 +5,19 @@
   virtualisation.oci-containers = {
     backend = "podman";
     containers.fireshare = {
-      image = "shaneisrael/fireshare:latest";
+      image = "docker.io/shaneisrael/fireshare:latest-lite";
       autoStart = true;
       ports = [ "8086:80" ];
 
       environment = {
         ADMIN_USERNAME = "tysufa";
-        ADMIN_PASSWORD = "deskiwis"; # Recommended: migrate to sops-nix secret later
         PUID = "1000";
         PGID = "1000";
       };
+
+      environmentFiles = [
+        config.sops.secrets."fireshare-env".path
+      ];
 
       volumes = [
         "/mnt/storage/fireshare/data:/data:rw"
