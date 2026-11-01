@@ -1,5 +1,3 @@
-// "/-" comments out the following node.
-
 workspace "terminal" {
 }
 workspace "browser" {
@@ -8,8 +6,6 @@ workspace "games" {
 }
 workspace "stash" {
 }
-
-// https://niri-wm.github.io/niri/Configuration:-Introduction
 
 // https://niri-wm.github.io/niri/Configuration:-Input
 input {
@@ -75,10 +71,7 @@ input {
     focus-follows-mouse max-scroll-amount="0%"
 }
 
-
-// You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
-
 // https://niri-wm.github.io/niri/Configuration:-Outputs
 output "eDP-1" {
     // Uncomment this line to disable this output.
@@ -108,7 +101,7 @@ output "eDP-1" {
 output "HDMI-A-1" {
     mode "2560x1440@143.999"
     scale 1.25
-    position x=1920 y=0
+    position x=100 y=0 // x=100 is to make sure it overlaps on the right with eDP-1  and let the output be placed automatically
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -220,20 +213,19 @@ layout {
     }
 }
 
-// Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
 spawn-at-startup "noctalia"
 
+// To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
+// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
+
 debug {
   // Allows notification actions and window activation from Noctalia.
   honor-xdg-activation-with-invalid-serial
 }
-
-// To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
-// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
@@ -247,16 +239,11 @@ hotkey-overlay {
 // After enabling or disabling this, you need to restart the apps for this to take effect.
 prefer-no-csd
 
-// You can change the path where screenshots are saved.
-// A ~ at the front will be expanded to the home directory.
 // The path is formatted with strftime(3) to give you the screenshot date and time.
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-
-// You can also set this to null to disable saving screenshots to disk.
+screenshot-path "~/Pictures/Screenshots/niri_screenshot_%Y-%m-%d %H-%M-%S.png"
 // screenshot-path null
 
 // Animation settings.
-// The wiki explains how to configure individual animations:
 // https://niri-wm.github.io/niri/Configuration:-Animations
 animations {
     // off
@@ -267,7 +254,6 @@ animations {
 }
 
 // Window rules let you adjust behavior for individual windows.
-// Find more information on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Window-Rules
 
 // Work around WezTerm's initial configure bug
@@ -278,7 +264,6 @@ window-rule {
   default-column-width { fixed 1080; }
   default-window-height { fixed 920; }
 }
-
 
 // Open discord in floating mod and taking 95% of the screen
 window-rule {
@@ -329,12 +314,10 @@ window-rule {
 }
 
 // Example: enable rounded corners for all windows.
-// (This example rule is commented out with a "/-" in front.)
 window-rule {
     geometry-corner-radius 7
     clip-to-geometry true
 }
-
 
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
