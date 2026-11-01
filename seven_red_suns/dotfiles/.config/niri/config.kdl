@@ -347,6 +347,11 @@ binds {
     Mod+Ctrl+M { spawn-sh "pkill -f deezer"; }
     Mod+Ctrl+D { spawn-sh "pkill -f discord"; }
 
+    Mod+Shift+S { screenshot; }
+    Mod+Ctrl+S { screenshot-window; }
+    Mod+Alt+S { screenshot-screen; }
+
+
     Mod+Y { spawn "niri-scratchpad" "create" "1"; }
     Mod+Ctrl+Y { spawn "niri-scratchpad" "delete" "1"; }
 
