@@ -14,6 +14,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    helium-flake.url = "github:oxcl/nix-flake-helium-browser";
+    helium-flake.inputs.nixpkgs.follows = "nixpkgs";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     niri-scratchpad.url = "github:argosnothing/niri-scratchpad";
