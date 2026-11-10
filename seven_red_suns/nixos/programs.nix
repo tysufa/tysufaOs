@@ -74,6 +74,7 @@ in {
   programs.gamemode.enable = true;
 
   programs.firefox.enable = true;
+  programs.fuse.userAllowOther = true;
 
   # programs.hyprland.enable = true;
   programs.niri.enable = true;
@@ -94,8 +95,7 @@ in {
     # inputs.caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
     noctalia
 
-    # for Hyprland
-    hyprshell
+    # hyprshell # for hyprland
 
     # hardware/périphériques
     # linuxPackages.openrazer
@@ -123,6 +123,8 @@ in {
     (olympus.override {celesteWrapper = "steam-run";})
     lumafly # hollow knight mod manager
     cogfly # silksong mod manage
+    me3 # framework to mod games, used for elden ring archipelago
+    wine # used for eldenring archipelago
     poptracker
     r2modman # mod manager, I use it for unfair flips, but it could be used for risk of rain apparently
     protontricks # needed to install bepinex, which is needed to mod tunic
@@ -131,7 +133,11 @@ in {
     # -- keyboard --
     qwerty-fr
 
-    # -- standard graphical desktop apps --
+    # -- standard GUI, graphical desktop apps --
+    obs-studio
+    rclone-ui
+    opencloud-desktop-shell-integration-dolphin
+    opencloud-desktop
     obsidian
     gnome-boxes
     calibre
@@ -155,25 +161,26 @@ in {
     qbittorrent
     zen-sine
     # inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.helium-flake.packages.${pkgs.stdenv.hostPlatform.system}.default
     deezer-desktop
     vesktop
     kitty
     blanket # rain (and other) noises app 
     libreoffice
-    # eloquent # local text to speech app
+    eloquent # local grammar checker app
     switcheroo # TODO : find what it does
     localsend
     signal-desktop
     thunderbird
     kdePackages.kdeconnect-kde
     discord
-    brave-origin
     easyeffects # manage input and output sound (adding effects, removing background sounds, ...)
     wtype # reliable text input for handy
 
     # android-tools # for graphene os installation
 
     # ---- cli/tuis and general apps for development ----
+    fuse3
     inputs.niri-scratchpad.packages.${pkgs.system}.default # cli to enable scratchpads on niri
     jq # small utility to parse json data
     ddcutil # control brightness via hdmi (for external monitors)
