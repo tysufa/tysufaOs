@@ -143,7 +143,7 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "tysufa";
-    extraGroups = ["networkmanager" "wheel" "kvm" "libvirtd" "i2c" ]; #adbusers and kvm are for installing graphene os, i2c is for ddcutil
+    extraGroups = ["networkmanager" "wheel" "kvm" "libvirtd" "i2c" "fuse"]; #adbusers and kvm are for installing graphene os, i2c is for ddcutil
   };
   users.extraUsers.tysufa = {
   };
@@ -180,6 +180,7 @@
   ];
 
   environment.sessionVariables = {
+    TERMINAL = "kitty";
     NPM_CONFIG_PREFIX = "$HOME/.npm-global";
   };
 
@@ -191,7 +192,12 @@
   xdg.mime = {
     enable = true;
     defaultApplications = {
-      "application/pdf" = "org.pwmt.zathura.desktop";
+      "application/pdf" = "org.kde.okular.desktop";
+      "inode/directory" = "org.kde.dolphin.desktop";
+      "application/yaml" = "nvim.desktop";
+      "application/x-yaml" = "nvim.desktop";
+      "text/yaml" = "nvim.desktop";
+      "text/x-yaml" = "nvim.desktop";
     };
   };
 
