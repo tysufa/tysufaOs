@@ -136,7 +136,11 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  virtualisation.libvirtd.enable = true; # gnome boxes
+  virtualisation.libvirtd = {
+    enable = true; # gnome boxes / virtual machine manager
+    qemu.vhostUserPackages = with pkgs; [ virtiofsd ]; # allow folders to be shared (virtiofsd needs to be accessible in standard path)
+  };
+  programs.virt-manager.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tysufa = {

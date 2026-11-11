@@ -64,6 +64,9 @@
     '';
   };
 in {
+  programs.virt-manager.enable = true;
+
+
   programs.kdeconnect.enable = true;
 
   programs.zsh.enable = true;
@@ -134,6 +137,7 @@ in {
     qwerty-fr
 
     # -- standard GUI, graphical desktop apps --
+    drawy # kde excalidraw equivalent (but as a desktop app)
     obs-studio
     rclone-ui
     opencloud-desktop-shell-integration-dolphin
