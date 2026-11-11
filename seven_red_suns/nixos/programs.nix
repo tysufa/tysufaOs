@@ -143,7 +143,6 @@ in {
     opencloud-desktop-shell-integration-dolphin
     opencloud-desktop
     obsidian
-    gnome-boxes
     calibre
     mpv
     pkgs-stable.zotero
