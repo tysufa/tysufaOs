@@ -14,6 +14,7 @@
     ./nixos/services.nix
     ./nixos/hardware.nix
     # inputs.noctalia-greeter.nixosModules.default
+    ./nixos/virtualisation.nix
   ];
 
   # Bootloader.
@@ -83,21 +84,6 @@
 
   # this should be enabled automatically by steam even if we remove it
 
-  specialisation = {
-    gaming-time.configuration = {
-      hardware.nvidia = {
-        # FIX: Explicitly disable finegrained power management here so Sync mode can build
-        powerManagement.finegrained = lib.mkForce false;
-
-        prime.sync.enable = lib.mkForce true;
-        prime.offload = {
-          enable = lib.mkForce false;
-          enableOffloadCmd = lib.mkForce false;
-        };
-      };
-    };
-  };
-
   # ---- GENERAL SYSTEM OPTIONS ----
   networking.hostName = "seven_red_suns"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -136,18 +122,13 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  virtualisation.libvirtd = {
-    enable = true; # gnome boxes / virtual machine manager
-    qemu.vhostUserPackages = with pkgs; [ virtiofsd ]; # allow folders to be shared (virtiofsd needs to be accessible in standard path)
-  };
-  programs.virt-manager.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tysufa = {
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "tysufa";
-    extraGroups = ["networkmanager" "wheel" "kvm" "libvirtd" "i2c" "fuse"]; #adbusers and kvm are for installing graphene os, i2c is for ddcutil
+    extraGroups = ["networkmanager" "wheel" "kvm" "i2c" "fuse"]; #adbusers and kvm are for installing graphene os, i2c is for ddcutil
   };
   users.extraUsers.tysufa = {
   };

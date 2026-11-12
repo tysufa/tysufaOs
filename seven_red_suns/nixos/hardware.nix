@@ -2,14 +2,17 @@
   hardware.graphics.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = true; # Enables deep sleep for the 4080 when not offloading
+    open = false; # open source drivers
+    # powermanagement needs offload to be true
+    # powerManagement.enable = true;
+    # powerManagement.finegrained = true; # Enables deep sleep for the 4080 when offloading
 
+    prime.sync.enable = false;
     prime = {
       # nvidia-offload %command% to activate nvidia gpu when offload mod is on
       offload = {
-        enable = true;
-        enableOffloadCmd = true;
+        enable = false;
+        enableOffloadCmd = false;
       };
 
       # FIX: Wrapped these in quotation marks ""
